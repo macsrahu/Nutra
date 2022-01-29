@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Save"
+        android:id="@+id/btnSave"
+        android:icon="@drawable/save"/>
+    <item android:title="Photo"
+        android:id="@+id/btnPhoto"
+        android:icon="@drawable/camera"/>
+    <item android:title="Exit"
+        android:id="@+id/btnCancel"
+        android:icon="@drawable/ic_baseline_arrow_back_24"/>
+</menu>

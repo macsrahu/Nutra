@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Upload"
+        android:id="@+id/btnSave"
+        android:icon="@drawable/ic_baseline_file_upload_24"/>
+    <item android:title="Remove"
+        android:id="@+id/btnRemove"
+        android:icon="@android:drawable/ic_menu_delete"/>
+    <item android:title="Back"
+        android:id="@+id/btnCancel"
+        android:icon="@drawable/ic_baseline_arrow_back_24"/>
+</menu>

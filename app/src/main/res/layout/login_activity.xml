@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="153dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/splash_image" />
+
+        <!--  Email Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/mail"
+                android:drawablePadding="10dp"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--  Password Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:passwordToggleEnabled="true"
+            android:hint="Password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:drawableStart="@drawable/key"
+                android:drawablePadding="10dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/key" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:stateListAnimator="@null"
+            android:elevation="@dimen/_10ssp"
+            app:cornerRadius="@dimen/_10ssp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_marginBottom="20dp"
+            android:padding="@dimen/_5ssp"
+            android:layout_marginTop="20dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            />
+
+
+        <TextView
+            android:id="@+id/link_reset_password"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            style="@style/MediumFont"
+            android:padding="@dimen/_5ssp"
+            android:text="Reset Password"
+            android:textColor="@color/colorAccent"
+            />
+
+
+        <TextView
+            android:id="@+id/link_signup"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="visible"
+            android:includeFontPadding="false"
+            android:padding="@dimen/_5ssp"
+            android:text="New User Signup"
+            android:textColor="@color/dark_grey"
+            />
+
+          <TextView
+              android:id="@+id/tvBuild"
+              android:layout_marginTop="@dimen/_15ssp"
+              android:visibility="gone"
+              android:gravity="center_horizontal"
+              android:text="Version Info"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</ScrollView>

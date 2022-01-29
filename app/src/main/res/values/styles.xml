@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppMaterialTheme">
+        <!-- only for Lollipop and above versions -->
+        <!-- Status Bar Color -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- Toolbar Bar Color -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- Toolbar Text Color -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+    </style>
+    <style name="SmallFont" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_9ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+    </style>
+
+    <style name="NormalFont" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+    </style>
+
+    <style name="MediumFont" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+    </style>
+
+    <style name="LargeFont" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+    </style>
+
+    <style name="LargerFont" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+    </style>
+
+    <style name="LargestFont" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+    </style>
+
+    <style name="NoData" parent="AppMaterialTheme">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+    </style>
+
+    <style name="PauseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/PauseDialogAnimation</item>
+    </style>
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_slow_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_slow_right</item>
+    </style>
+    <style name="HorizontalLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/md_amber_600</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+    </style>
+    <style name="defaultViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="spinnerStyle" parent="defaultViewStyle">
+        <item name="smsp_errorTextColor">@color/gray</item>
+        <item name="smsp_floatingLabelColor">@color/dark_grey</item>
+        <item name="smsp_underlineColor">@color/dark_grey</item>
+        <item name="smsp_errorTextSize">13sp</item>
+        <item name="smsp_itemSize">14sp</item>
+        <item name="smsp_hintSize">14sp</item>
+    </style>
+</resources>

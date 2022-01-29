@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:ignore="MissingClass">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp" />
+
+    <LinearLayout
+        android:id="@+id/relProducts"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:id="@+id/cardSpinner"
+            android:padding="@dimen/_10ssp"
+            android:layout_height="@dimen/_45ssp"
+            android:layout_marginTop="@dimen/_5ssp"
+            app:cardCornerRadius="@dimen/_5ssp"
+            app:cardElevation="@dimen/_5ssp"
+            android:layout_marginBottom="@dimen/_10ssp"
+            android:outlineSpotShadowColor="@color/colorAccent"
+            >
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spinnerRoute"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/text_root_name"
+                android:gravity="center">
+
+            </com.jaredrummler.materialspinner.MaterialSpinner>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDealers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cardSpinner"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/tvNoRecordFound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_5ssp"
+            android:layout_marginTop="@dimen/_20ssp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="No record found"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/_16ssp"
+            android:visibility="gone"></TextView>
+    </LinearLayout>
+
+</LinearLayout>

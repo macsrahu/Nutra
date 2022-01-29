@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "481378569147",
+    "firebase_url": "https://numax-sales-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "numax-sales",
+    "storage_bucket": "numax-sales.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481378569147:android:20fd1ae6cf422e6e41929e",
+        "android_client_info": {
+          "package_name": "com.sales.numax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481378569147-ncq4k5roaju55qqfhl0nm8gknr47mqjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTITrdSQvyl_YjDFP-RYLuRo6N--gbHK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481378569147-ncq4k5roaju55qqfhl0nm8gknr47mqjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

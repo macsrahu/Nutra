@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp" />
+
+
+        <ScrollView
+            android:id="@+id/content_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layImage"
+            android:layout_marginBottom="60dp"
+            android:padding="@dimen/_4ssp"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_70ssp"
+                android:orientation="vertical">
+
+                <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                    android:id="@+id/sp_routes"
+                    style="@style/spinnerStyle"
+                    android:layout_margin="@dimen/_6ssp"
+                    app:smsp_arrowColor="#3da4ab"
+                    app:smsp_enableErrorLabel="false"
+                    app:smsp_errorText="Error"
+                    app:smsp_hint="Route"
+                    app:smsp_hintColor="@color/gray"
+                    app:smsp_hintSize="@dimen/_14ssp"
+                    app:smsp_isOutlined="true"
+                    app:smsp_multilineError="false"
+                    app:smsp_outlinedBoxColor="@color/light_grey"
+                    app:smsp_outlinedBoxRadius="10dp"
+                    app:smsp_outlinedHintPadding="4dp"
+                    android:spinnerMode="dropdown"
+                    app:smsp_outlinedHintStartX="4dp"
+                    app:smsp_isSearchable="false"
+                    app:smsp_outlinedStrokeWidth="2dp" />
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expander_style"
+                    android:padding="@dimen/_5ssp"
+                    app:expansion_headerIndicator="@id/headerIndicator"
+                    app:expansion_layout="@id/expansionLayoutShop"
+                    app:expansion_toggleOnClick="true">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Shop Detail"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"></TextView>
+                    <!-- HEADER INDICATOR -->
+                    <ImageView
+                        android:id="@+id/headerIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginLeft="16dp"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_white_24dp"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayoutShop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expander_panel_border"
+                    android:padding="@dimen/_2ssp"
+                    app:expansion_expanded="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_5ssp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Shop Name">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_donor_shop"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_shop_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Dealer Name">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_dealer_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_person_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="GST #">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_dealer_gst"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_round_gst_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/expander_style"
+                    android:padding="@dimen/_5ssp"
+                    app:expansion_headerIndicator="@id/headerIndicatorAddress"
+                    app:expansion_layout="@id/expansionLayoutAddr"
+                    app:expansion_toggleOnClick="true">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:drawablePadding="4dp"
+                        android:text="Contact Detail"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"></TextView>
+                    <!-- HEADER INDICATOR -->
+                    <ImageView
+                        android:id="@+id/headerIndicatorAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginLeft="16dp"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_white_24dp"
+                        tools:ignore="VectorDrawableCompat" />
+
+
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayoutAddr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/expander_panel_border"
+                    android:padding="@dimen/_4ssp"
+                    app:expansion_expanded="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/button_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/text_button"
+                            android:padding="@dimen/_5ssp"
+                            android:text="Find Location"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_12ssp"></TextView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Flat/Building">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_address_line1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_credit_card_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Street/Avenue">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_address_line2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_location_searching_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Town">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_town"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_mark_chat_read_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="City">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_location_city_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Pincode">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_pincode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_pets_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="6" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="District"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_district"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_edit_location_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Mobile *">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_mobile_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_smartphone_24"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="10" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="WhatsApp No">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_whatsapp_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/whatsapp_logo"
+                                android:drawablePadding="10dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="10" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
+                            android:hint="Email">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_baseline_email_24"
+                                android:drawablePadding="@dimen/_5ssp"
+                                android:imeOptions="actionNext"
+                                android:inputType="textEmailAddress" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/white"
+        app:backgroundTint="@color/primary_dark"
+        app:elevation="@dimen/_5ssp"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="@color/colorAccent"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" /><!--    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation-->
+
+</FrameLayout>

@@ -1,0 +1,107 @@
+plugins {
+    id 'com.android.application'
+}
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+
+android {
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    useLibrary 'org.apache.http.legacy'
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.sales.numax"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.mediarouter:mediarouter:1.0.0'
+    implementation 'androidx.versionedparcelable:versionedparcelable:1.1.0'
+    implementation 'androidx.core:core:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+//    implementation 'androidx.appcompat:appcompat:1.4.0'
+//    implementation 'com.google.android.material:material:1.4.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+//    testImplementation 'junit:junit:4.+'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'com.google.firebase:firebase-appindexing:17.1.0'
+    implementation 'com.google.firebase:firebase-database:19.7.0'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:17.3.3'
+    implementation 'com.google.firebase:firebase-firestore:17.1.5'
+
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    implementation 'com.google.android.gms:play-services-location:19.0.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    implementation('com.mikepenz:materialdrawer:6.1.2@aar') {
+        transitive = true
+    }
+    implementation 'com.mikepenz:iconics-core:2.5.11@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
+    implementation 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+    implementation 'info.androidhive:fontawesome:0.0.5'
+    implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
+    implementation 'com.intuit.ssp:ssp-android:1.0.5'
+    implementation 'io.github.pilgr:paperdb:2.7.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //Horizontal scorll view
+    implementation 'com.github.takusemba:multisnaprecyclerview:2.0.4'
+    //Material Spinner
+    implementation 'com.jaredrummler:material-spinner:1.3.1'
+
+    implementation 'com.github.viethoa:fastscroller:1.2.0' // Fast Scroll Third party
+    implementation 'de.hdodenhof:circleimageview:3.1.0' // Circle Image
+    implementation "com.github.skydoves:powermenu:2.1.9" //Powrb
+    implementation "com.github.gcacace:signature-pad:1.2.1"
+    implementation 'info.androidhive:fontawesome:0.0.5'
+    implementation 'com.github.chivorns:smartmaterialspinner:1.5.0' //SPINNER
+    implementation 'com.github.florent37:expansionpanel:1.2.4' // Expander
+    implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.6.0'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+}
+
+
+
+apply plugin: 'com.google.gms.google-services'
