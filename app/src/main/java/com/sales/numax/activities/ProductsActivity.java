@@ -24,6 +24,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +59,9 @@ public class ProductsActivity extends AppCompatActivity {
 
     @BindView(R.id.tvNoRecordFound)
     TextView tvNoRecordFound;
+
+    @BindView(R.id.bottomNavigation)
+    BottomNavigationView bottomNavigation;
 
     ProductAdapter adapter;
     Toolbar mToolbarView = null;
@@ -118,6 +122,27 @@ public class ProductsActivity extends AppCompatActivity {
 
     private void InitControls() {
 
+        if (Global.MENU_FROM.equals("ORDER")) {
+            bottomNavigation.setVisibility(View.VISIBLE);
+            bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+                switch (item.getItemId()) {
+
+                    case R.id.btnSubmit:
+                        Intent iMain = new Intent(ProductsActivity.this, NewOrderActivity.class);
+                        iMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(iMain);
+                        finish();
+                        break;
+
+                    case R.id.btnCancel:
+                        onBackPressed();
+                        break;
+                }
+                return true;
+            });
+        } else {
+            bottomNavigation.setVisibility(View.GONE);
+        }
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         rvProductList.setLayoutManager(mLayoutManager);
         rvProductList.addItemDecoration(new GridSpacingItemDecoration(1, Global.dpToPx(5, getApplicationContext()), false));

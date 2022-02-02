@@ -22,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.sales.numax.R;
 import com.sales.numax.model.Category;
 import com.sales.numax.model.Dealer;
+import com.sales.numax.model.OrderLine;
 import com.sales.numax.model.Route;
 import com.sales.numax.model.UserDetail;
 
@@ -42,6 +43,10 @@ public class Global {
     public static Dealer SELECTED_DEALER=null;
     public static String DEALER_KEY="";
     public  static String SHOP_NAME="";
+    public static String MENU_FROM="";
+
+    public static ArrayList<OrderLine> ORDER_LINE=null;
+
     public static Toolbar PrepareToolBar(final Activity context, boolean isBackButtonVisible, String title) {
         Toolbar toolbar = (Toolbar) context.findViewById(R.id.toolbar);
 

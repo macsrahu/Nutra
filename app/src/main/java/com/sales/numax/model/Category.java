@@ -1,11 +1,13 @@
 package com.sales.numax.model;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
 /**
  * Created by rahupathi on 10/28/2017.
  */
-
+@Keep
 public class Category implements Serializable {
 
     String categoryname;

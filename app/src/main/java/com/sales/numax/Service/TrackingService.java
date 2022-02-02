@@ -129,7 +129,7 @@ public class TrackingService extends Service {
                     Location location = locationResult.getLastLocation();
                     if (location != null) {
                         //Toast.makeText(getApplicationContext(),"COOL",Toast.LENGTH_LONG).show();
-                        SharedPreferences sharedPref = getSharedPreferences("REMEMBER_ME_BRIDLE", MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("REMEMBER_ME_NUTRA", MODE_PRIVATE);
                         boolean saveLogin = sharedPref.getBoolean("saveLogin", false);
                         if (saveLogin) {
                             String USERKEY = sharedPref.getString("loginid", "");

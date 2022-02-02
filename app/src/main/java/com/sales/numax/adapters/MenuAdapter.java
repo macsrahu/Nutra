@@ -20,6 +20,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.sales.numax.R;
 import com.sales.numax.activities.DealerEntry;
 import com.sales.numax.activities.DealersActivity;
+import com.sales.numax.activities.NewOrderActivity;
 import com.sales.numax.activities.ProductsActivity;
 import com.sales.numax.model.ApplicationMenu;
 import com.sales.numax.model.Category;

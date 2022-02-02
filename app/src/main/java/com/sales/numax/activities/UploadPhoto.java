@@ -68,6 +68,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import id.zelory.compressor.Compressor;
+import pl.aprilapps.easyphotopicker.DefaultCallback;
+import pl.aprilapps.easyphotopicker.EasyImage;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -88,7 +91,7 @@ public class UploadPhoto extends AppCompatActivity {
     String _FOLDER_PATH = "Nutra/Photo";
     public static final int CAMERA = 0;
     public static final int STORAGE = 125;
-
+    private boolean PickFromGallary = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +141,14 @@ public class UploadPhoto extends AppCompatActivity {
 
     private void InitializeControls() {
         parentLayout = findViewById(android.R.id.content);
+
+        EasyImage.configuration(this)
+                .setImagesFolderName(mOutputFilePath)
+                .setCopyTakenPhotosToPublicGalleryAppFolder(true)
+                .setCopyPickedImagesToPublicGalleryAppFolder(true)
+                .setAllowMultiplePickInGallery(true);
+
+
         button_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,7 +199,7 @@ public class UploadPhoto extends AppCompatActivity {
                 final int radius = 5;
                 final int margin = 5;
                 final Transformation transformation = new RoundedCornersTransformation(radius, margin);
-                Picasso.with(getApplicationContext()).load(mImageUrl).placeholder(R.drawable.profile).transform(transformation).networkPolicy(NetworkPolicy.OFFLINE).into(imgPicture, new Callback() {
+                Picasso.with(getApplicationContext()).load(mImageUrl).placeholder(R.drawable.progress_animation).transform(transformation).networkPolicy(NetworkPolicy.OFFLINE).into(imgPicture, new Callback() {
                     @Override
                     public void onSuccess() {
 
@@ -197,7 +208,7 @@ public class UploadPhoto extends AppCompatActivity {
                     @Override
                     public void onError() {
                         String sImageUri = mDealer.getUrl();
-                        Picasso.with(getApplicationContext()).load(sImageUri).placeholder(R.drawable.profile).transform(transformation).into(imgPicture);
+                        Picasso.with(getApplicationContext()).load(sImageUri).placeholder(R.drawable.progress_animation).transform(transformation).into(imgPicture);
                     }
                 });
             }
@@ -240,16 +251,6 @@ public class UploadPhoto extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Error:" + e.getMessage(), LENGTH_LONG).show();
         }
         return new File("");
-    }
-    private void FolderPermission() {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            int permissionCheck = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            permissionCheck += ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-            if (permissionCheck != 0) {
-                ActivityCompat.requestPermissions(UploadPhoto.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
-                        STORAGE);
-            }
-        }
     }
 
     private void RemoveImage(String url) {
@@ -383,16 +384,8 @@ public class UploadPhoto extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 if (options[item].equals("Take Photo")) {
-                    try {
-
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getBaseContext().getExternalCacheDir(), "temp.jpg");
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                        startActivityForResult(intent, 1);
-
-                    } catch (Exception ex) {
-                        Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-                    }
+                    PickFromGallary = false;
+                    EasyImage.openCameraForImage(UploadPhoto.this, 0);
 
                 } else if (options[item].equals("Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -421,14 +414,63 @@ public class UploadPhoto extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try {
-            String mShop = text_dealer_shop.getText().toString().replaceAll(" ", "_");
-            mOutputFilePath = ImageUtil.PrepareImage(getApplicationContext(), requestCode, resultCode, data, RESULT_OK, imgPicture, _FOLDER_PATH, mShop);
-            Messages.ShowToast(getApplicationContext(),mOutputFilePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Messages.ShowToast(getApplicationContext(), e.getMessage());
+        if (PickFromGallary) {
+            try {
+                mOutputFilePath = ImageUtil.PrepareImage(getApplicationContext(), requestCode, resultCode, data, RESULT_OK, imgPicture, _FOLDER_PATH, "DONOR");
+            } catch (IOException e) {
+                e.printStackTrace();
+                Messages.ShowToast(getApplicationContext(), e.getMessage());
+            }
+        }else {
+            EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
+                @Override
+                public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
+                    //Some error handling
+                    e.printStackTrace();
+                    Messages.ShowToast(getApplicationContext(), e.getMessage());
+                }
+
+                @Override
+                public void onImagesPicked(List<File> imageFiles, EasyImage.ImageSource source, int type) {
+                    onPhotosReturned(imageFiles);
+                }
+
+                @Override
+                public void onCanceled(EasyImage.ImageSource source, int type) {
+                    //Cancel handling, you might wanna remove taken photo if it was canceled
+                    if (source == EasyImage.ImageSource.CAMERA_IMAGE) {
+                        File photoFile = EasyImage.lastlyTakenButCanceledPhoto(UploadPhoto.this);
+                        if (photoFile != null) photoFile.delete();
+                    }
+                }
+            });
         }
     }
+    private void onPhotosReturned(List<File> returnedPhotos) {
+        for (File mFile: returnedPhotos) {
+            try {
+                Bitmap myBitmap = BitmapFactory.decodeFile(mFile.getAbsolutePath());
+
+                Bitmap imgRotated = Global.rotateImageIfRequired(getApplicationContext(), myBitmap, Uri.fromFile(mFile));
+                imgPicture.setImageBitmap(imgRotated);
+                //File mDestination = new File(_FOLDER_PATH +"//temp.jpg");
+
+                File mCompressedFile = new Compressor(this).compressToFile(mFile.getAbsoluteFile());
+                mOutputFilePath = mCompressedFile.getAbsolutePath();
+
+            } catch (Exception ex) {
+                Messages.ShowToast(getApplication(), "Error:" + ex.getMessage());
+            }
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Clear any configuration that was done!
+        EasyImage.clearConfiguration(this);
+        super.onDestroy();
+    }
+
 
 }

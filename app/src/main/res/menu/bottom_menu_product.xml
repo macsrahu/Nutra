@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Add to Cart"
+        android:id="@+id/btnSubmit"
+        android:icon="@drawable/ic_baseline_add_shopping_cart_24"/>
+    <item android:title="Cancel"
+        android:id="@+id/btnCance"
+        android:icon="@drawable/ic_baseline_arrow_back_24"/>
+</menu>

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sales.numax.R;
 import com.sales.numax.activities.DealerEntry;
+import com.sales.numax.activities.NewOrderActivity;
 import com.sales.numax.model.Dealer;
 import com.sales.numax.utility.Global;
 import com.sales.numax.utility.RoundedCornersTransformation;
@@ -177,14 +178,13 @@ public class DealerAdapter extends RecyclerView.Adapter<DealerAdapter.MyViewHold
                     mContext.startActivity(iDeliveryEntry);
                 }
             }
-//            } else if (item.getTitle().equals("New Receipt")) {
-//                if (Global.SELECTED_DONOR_MODEL != null) {
-//                    Global.DONOR_KEY = Global.SELECTED_DONOR_MODEL.getKey();
-//                    Intent iDep = new Intent(mContext, ReceiptEntry.class);
-//                    iDep.putExtra("FROM", "DONOR_LIST");
-//                    iDep.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    mContext.startActivity(iDep);
-//                }
+            else if (item.getTitle().equals("New Order")) {
+                if (Global.SELECTED_DEALER != null) {
+                    Intent iDep = new Intent(mContext, NewOrderActivity.class);
+                    iDep.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(iDep);
+                }
+            }
 //            } else if (item.getTitle().equals("My Receipts")) {
 //                if (Global.SELECTED_DONOR_MODEL != null) {
 //                    Global.DONOR_KEY = Global.SELECTED_DONOR_MODEL.getKey();

@@ -18,22 +18,25 @@
     <LinearLayout
         android:id="@+id/relProducts"
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:orientation="vertical">
 
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
             android:id="@+id/cardSpinner"
-            android:padding="@dimen/_10ssp"
-            android:layout_height="@dimen/_45ssp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="@dimen/_5ssp"
             android:layout_marginTop="@dimen/_5ssp"
+            android:layout_marginRight="@dimen/_5ssp"
+            android:layout_marginBottom="@dimen/_5ssp"
+            android:outlineSpotShadowColor="@color/gray"
             app:cardCornerRadius="@dimen/_5ssp"
-            app:cardElevation="@dimen/_5ssp"
-            android:layout_marginBottom="@dimen/_10ssp"
-            android:outlineSpotShadowColor="@color/colorAccent"
-            >
+            app:cardElevation="@dimen/_3ssp"
+            app:strokeColor="@color/gray"
+            app:strokeWidth="@dimen/_1ssp">
 
             <com.jaredrummler.materialspinner.MaterialSpinner
                 android:id="@+id/spinnerCategory"
@@ -64,6 +67,19 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/_16ssp"
             android:visibility="gone"></TextView>
-   </LinearLayout>
+    </LinearLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/white"
+        app:backgroundTint="@color/gray"
+        app:elevation="@dimen/_5ssp"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="@color/colorAccent"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_menu_product" />
 </LinearLayout>

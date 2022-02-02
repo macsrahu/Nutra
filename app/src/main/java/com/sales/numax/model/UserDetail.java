@@ -1,7 +1,10 @@
 package com.sales.numax.model;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
+@Keep
 public class UserDetail implements Serializable {
     String key;
     String name;

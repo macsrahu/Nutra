@@ -2,8 +2,11 @@ package com.sales.numax.model;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
+@Keep
 public class ApplicationMenu {
 
     String code;

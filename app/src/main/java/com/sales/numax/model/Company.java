@@ -1,7 +1,9 @@
 package com.sales.numax.model;
 
-import java.io.Serializable;
+import androidx.annotation.Keep;
 
+import java.io.Serializable;
+@Keep
 public class Company implements Serializable {
     String addressline1;
     String addressline2;

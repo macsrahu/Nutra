@@ -533,6 +533,7 @@ public class DealerEntry extends AppCompatActivity {
         }
         //toggleButtons();
     }
+
     public void stopLocationUpdates() {
         // Removing location updates
         mFusedLocationClient
@@ -546,6 +547,7 @@ public class DealerEntry extends AppCompatActivity {
                     }
                 });
     }
+
     private void getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());

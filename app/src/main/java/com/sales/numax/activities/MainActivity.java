@@ -3,11 +3,14 @@ package com.sales.numax.activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -65,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = Global.PrepareToolBar(this, true, getResources().getString(R.string.app_name));
         mToolbar.setTitle(getResources().getString(R.string.app_name));
+        LocationAccessPermission();
+
         InitDrawerMenu(mToolbar);
         SetupMainMenu();
 
@@ -72,6 +78,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+    private void LocationAccessPermission() {
+        LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            // Toast.makeText(getApplicationContext(), "GPS tracking is not enabled", Toast.LENGTH_LONG).show();
+        }
+        int permission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            startTrackerService();
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST);
+        }
+
     }
 
     private  void BindSalesAbstract() {

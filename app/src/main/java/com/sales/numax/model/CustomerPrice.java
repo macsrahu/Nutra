@@ -1,7 +1,9 @@
 package com.sales.numax.model;
 
-import java.io.Serializable;
+import androidx.annotation.Keep;
 
+import java.io.Serializable;
+@Keep
 public class CustomerPrice implements Serializable {
     String key;
     String productkey;

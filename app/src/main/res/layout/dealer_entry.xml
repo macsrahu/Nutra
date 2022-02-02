@@ -40,6 +40,7 @@
                     app:smsp_arrowColor="#3da4ab"
                     app:smsp_enableErrorLabel="false"
                     app:smsp_errorText="Error"
+                    android:fontFamily="@font/lato"
                     app:smsp_hint="Route"
                     app:smsp_hintColor="@color/gray"
                     app:smsp_hintSize="@dimen/_14ssp"
@@ -68,6 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:text="Shop Detail"
+                        android:fontFamily="@font/lato"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12ssp"></TextView>
                     <!-- HEADER INDICATOR -->
@@ -102,6 +104,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
                             android:hint="Shop Name">
 
@@ -111,6 +114,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_baseline_shop_24"
                                 android:drawablePadding="10dp"
+                                android:fontFamily="@font/lato"
                                 android:imeOptions="actionNext"
                                 android:inputType="text" />
 
@@ -120,6 +124,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
                             android:layout_marginTop="6dp"
                             android:layout_marginBottom="6dp"
                             android:hint="Dealer Name">
@@ -139,6 +144,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
                             android:layout_marginTop="6dp"
                             android:layout_marginBottom="6dp"
                             android:hint="GST #">
@@ -150,6 +156,7 @@
                                 android:drawableLeft="@drawable/ic_round_gst_24"
                                 android:drawablePadding="10dp"
                                 android:imeOptions="actionNext"
+                                android:fontFamily="@font/lato"
                                 android:inputType="text" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -163,6 +170,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/expander_style"
                     android:padding="@dimen/_5ssp"
+                    android:fontFamily="@font/lato"
                     app:expansion_headerIndicator="@id/headerIndicatorAddress"
                     app:expansion_layout="@id/expansionLayoutAddr"
                     app:expansion_toggleOnClick="true">
@@ -210,6 +218,7 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/text_button"
                             android:padding="@dimen/_5ssp"
+                            android:fontFamily="@font/lato"
                             android:text="Find Location"
                             android:textAlignment="center"
                             android:textSize="@dimen/_12ssp"></TextView>
@@ -228,6 +237,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_baseline_credit_card_24"
                                 android:drawablePadding="10dp"
+                                android:fontFamily="@font/lato"
                                 android:imeOptions="actionNext"
                                 android:inputType="text" />
 
@@ -239,6 +249,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
                             android:hint="Street/Avenue">
 
@@ -248,6 +259,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_baseline_location_searching_24"
                                 android:drawablePadding="10dp"
+                                android:fontFamily="@font/lato"
                                 android:imeOptions="actionNext"
                                 android:inputType="text" />
 
@@ -258,6 +270,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
                             android:hint="Town">
 
@@ -267,6 +280,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_baseline_mark_chat_read_24"
                                 android:drawablePadding="10dp"
+                                android:fontFamily="@font/lato"
                                 android:imeOptions="actionNext"
                                 android:inputType="text" />
 
@@ -277,6 +291,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
                             android:hint="City">
 
@@ -284,6 +299,7 @@
                                 android:id="@+id/input_city"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato"
                                 android:drawableLeft="@drawable/ic_baseline_location_city_24"
                                 android:drawablePadding="10dp"
                                 android:imeOptions="actionNext"
@@ -296,8 +312,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
-                            android:hint="Pincode">
+                            android:hint="Pin code">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/input_pincode"
@@ -305,6 +322,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_baseline_pets_24"
                                 android:drawablePadding="10dp"
+                                android:fontFamily="@font/lato"
                                 android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="6" />
@@ -337,8 +355,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
-                            android:hint="Mobile *">
+                            android:hint="Mobile No">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/input_mobile_no"
@@ -346,6 +365,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_baseline_smartphone_24"
                                 android:drawablePadding="10dp"
+                                android:fontFamily="@font/lato"
                                 android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="10" />
@@ -357,6 +377,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
                             android:hint="WhatsApp No">
 
@@ -367,6 +388,7 @@
                                 android:drawableLeft="@drawable/whatsapp_logo"
                                 android:drawablePadding="10dp"
                                 android:imeOptions="actionNext"
+                                android:fontFamily="@font/lato"
                                 android:inputType="number"
                                 android:maxLength="10" />
 
@@ -377,13 +399,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
+                            android:fontFamily="@font/lato"
                             android:layout_marginBottom="6dp"
-                            android:hint="Email">
+                            android:hint="Email Id">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/input_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato"
                                 android:drawableLeft="@drawable/ic_baseline_email_24"
                                 android:drawablePadding="@dimen/_5ssp"
                                 android:imeOptions="actionNext"
@@ -402,7 +426,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/white"
-        app:backgroundTint="@color/primary_dark"
+        app:backgroundTint="@color/gray"
         app:elevation="@dimen/_5ssp"
         app:itemIconTint="@color/white"
         app:itemRippleColor="@color/colorAccent"

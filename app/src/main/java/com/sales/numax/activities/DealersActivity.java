@@ -87,6 +87,7 @@ public class DealersActivity extends AppCompatActivity {
         startActivity(iMain);
         finish();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -101,8 +102,8 @@ public class DealersActivity extends AppCompatActivity {
 
             case R.id.menu_add_dealer:
 
-                Global.SELECTED_DEALER=null;
-                Global.DEALER_KEY="";
+                Global.SELECTED_DEALER = null;
+                Global.DEALER_KEY = "";
 
                 Intent iDealerEntry = new Intent(DealersActivity.this, DealerEntry.class);
                 iDealerEntry.putExtra("FROM", "DEALER");
@@ -111,7 +112,7 @@ public class DealersActivity extends AppCompatActivity {
                 finish();
                 return true;
 
-           case android.R.id.home:
+            case android.R.id.home:
                 onBackPressed();
                 return true;
         }
@@ -139,13 +140,13 @@ public class DealersActivity extends AppCompatActivity {
         LoadRoute();
     }
 
-    private void LoadRoute(){
-        Global.ROUTES= new ArrayList<Route>();
+    private void LoadRoute() {
+        Global.ROUTES = new ArrayList<Route>();
         FirebaseData.LoadRoutes(getApplicationContext());
         if (Global.ROUTES != null) {
             MaterialSpinnerAdapter spiinerRoute = new MaterialSpinnerAdapter<Route>(getBaseContext(), Global.ROUTES);
             spinnerRoute.setAdapter(spiinerRoute);
-            spinnerRoute.setSelected(true);
+            spinnerRoute.setSelected(false);
             spinnerRoute.setText("SELECT ROUTE");
             spinnerRoute.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<Route>() {
                 @Override
@@ -159,11 +160,11 @@ public class DealersActivity extends AppCompatActivity {
                     }
                 }
             });
-            spinnerRoute.performClick();
+            //spinnerRoute.setSelectedIndex(-1);
         }
     }
 
-    private void LoadDealers(String routekey){
+    private void LoadDealers(String routekey) {
 
         final ProgressDialog dialog = ProgressDialog.show(this,
                 null,
@@ -173,7 +174,7 @@ public class DealersActivity extends AppCompatActivity {
         dialog.show();
         //Toast.makeText(getApplicationContext(),routekey,Toast.LENGTH_LONG).show();
         FirebaseDatabase.getInstance().getReference().child(FirebaseTables.TBL_DEALERS)
-            .orderByChild("routekey").equalTo(routekey).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                .orderByChild("routekey").equalTo(routekey).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 dialog.dismiss();
@@ -195,7 +196,7 @@ public class DealersActivity extends AppCompatActivity {
                         tvNoRecordFound.setVisibility(View.GONE);
                         rvDealers.setVisibility(View.VISIBLE);
                     } else {
-                        tvNoRecordFound.setText("Dealer(s) not found");
+                        tvNoRecordFound.setText("Dealer(s) not found for selected route");
                         tvNoRecordFound.setVisibility(View.VISIBLE);
                         rvDealers.setVisibility(View.GONE);
                     }

@@ -26,6 +26,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:fontFamily="@font/lato"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp">
 
@@ -33,6 +34,7 @@
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
                 android:drawableLeft="@drawable/mail"
                 android:drawablePadding="10dp"
                 android:inputType="textEmailAddress" />
@@ -43,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/lato"
             app:passwordToggleEnabled="true"
             android:hint="Password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -52,6 +55,7 @@
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:drawableStart="@drawable/key"
+                android:fontFamily="@font/lato"
                 android:drawablePadding="10dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -67,6 +71,7 @@
             android:stateListAnimator="@null"
             android:elevation="@dimen/_10ssp"
             app:cornerRadius="@dimen/_10ssp"
+            android:fontFamily="@font/lato"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_marginBottom="20dp"

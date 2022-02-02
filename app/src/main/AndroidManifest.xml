@@ -50,6 +50,10 @@
             android:name="com.sales.numax.activities.UploadPhoto"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.sales.numax.activities.NewOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
 <!--        <service android:name="com.oms.bridle.MyFirebaseMessagingService">-->
 <!--            <intent-filter>-->
@@ -63,7 +67,10 @@
 <!--            </intent-filter>-->
 <!--        </service>-->
         <service android:name=".Service.TrackingService" />
-<!--        <provider-->
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <!--        <provider-->
 <!--            android:name="androidx.core.content.FileProvider"-->
 <!--            android:authorities="com.sales.numax.fileprovider"-->
 <!--            android:exported="false"-->

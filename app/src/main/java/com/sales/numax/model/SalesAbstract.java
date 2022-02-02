@@ -1,5 +1,8 @@
 package com.sales.numax.model;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class SalesAbstract {
 
     String salesdate;
