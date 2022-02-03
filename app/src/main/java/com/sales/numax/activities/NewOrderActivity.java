@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,12 @@ public class NewOrderActivity extends AppCompatActivity {
 
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigation;
+
+    @BindView(R.id.text_total)
+    TextView text_total;
+
+    @BindView(R.id.layTotal)
+    LinearLayout layTotal;
 
     NewOrderAdapter adapter;
     Toolbar mToolbarView = null;
@@ -107,18 +114,31 @@ public class NewOrderActivity extends AppCompatActivity {
                 true);
         dialog.setInverseBackgroundForced(true);
         dialog.show();
-        if (Global.ORDER_LINE!=null) {
-            if (Global.ORDER_LINE.size()>0) {
+        if (Global.ORDER_LINE != null) {
+            if (Global.ORDER_LINE.size() > 0) {
                 adapter = new NewOrderAdapter(getApplicationContext(), NewOrderActivity.this, Global.ORDER_LINE);
                 rvOrderItems.setAdapter(adapter);
                 rvOrderItems.setVisibility(View.VISIBLE);
+                CalculateTotal();
+                layTotal.setVisibility(View.VISIBLE);
             }
-        }else{
+        } else {
             rvOrderItems.setVisibility(View.GONE);
             tvNoRecordFound.setText("No order found");
             tvNoRecordFound.setVisibility(View.VISIBLE);
+            layTotal.setVisibility(View.GONE);
+
         }
         dialog.dismiss();
+    }
+
+    public void CalculateTotal() {
+
+        Double dblAmount = 0d;
+        for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
+            dblAmount = dblAmount + Global.ORDER_LINE.get(i).getAmount();
+        }
+        text_total.setText(Global.GetFormatedValue(dblAmount));
     }
 
     @Override

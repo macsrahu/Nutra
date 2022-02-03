@@ -197,7 +197,7 @@ public class ProductsActivity extends AppCompatActivity {
                         if (product != null) {
                             if (product.getIsactive() == 1) {
                                 product.setCategorykey(categoryKey);
-                                product.setKey(product.getKey());
+                                product.setKey(productsSnapshot.getKey());
                                 mProducts.add(product);
                             }
                         }

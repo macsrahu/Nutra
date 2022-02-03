@@ -28,6 +28,7 @@ import com.sales.numax.model.UserDetail;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Global {
@@ -140,5 +141,11 @@ public class Global {
         Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
         img.recycle();
         return rotatedImg;
+    }
+
+    public static String GetFormatedValue(Double dlbValue) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String sumAmount = decimalFormat.format(dlbValue);
+        return sumAmount;
     }
 }

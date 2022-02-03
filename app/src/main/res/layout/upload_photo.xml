@@ -27,10 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/expander_style"
+            android:fontFamily="@font/lato"
             android:padding="@dimen/_5ssp"
-            android:textColor="@color/white"
             android:text="Shop Name"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"></TextView>
 
         <LinearLayout
@@ -46,8 +47,7 @@
                 android:layout_height="350dp"
                 android:padding="@dimen/_5ssp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/noimage">
-            </androidx.appcompat.widget.AppCompatImageView>
+                android:src="@drawable/noimage"></androidx.appcompat.widget.AppCompatImageView>
 
         </LinearLayout>
 
@@ -57,10 +57,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/border_down"
+            android:fontFamily="@font/lato"
             android:padding="@dimen/_5ssp"
             android:text="Click to Capture"
-            android:textColor="@color/white"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"></TextView>
     </LinearLayout>
 
@@ -70,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/white"
+        android:fontFamily="@font/lato"
         app:backgroundTint="@color/primary_dark"
         app:elevation="@dimen/_5ssp"
         app:itemIconTint="@color/white"

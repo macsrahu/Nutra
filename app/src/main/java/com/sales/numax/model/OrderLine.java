@@ -14,6 +14,7 @@ public class OrderLine implements Serializable {
     String orderdesc;
     String uom;
     String catkey;
+    String url;
 
     double price;
     double Qty;
@@ -99,5 +100,13 @@ public class OrderLine implements Serializable {
 
     public void setCatkey(String catkey) {
         this.catkey = catkey;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

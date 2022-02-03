@@ -13,6 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sales.numax.R;
 import com.sales.numax.model.OrderLine;
+import com.sales.numax.utility.RoundedCornersTransformation;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +34,7 @@ public class NewOrderAdapter  extends RecyclerView.Adapter<NewOrderAdapter.MyVie
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tvProductName, tvQty, tvPrice,tvAmount,tvDescription;
-        public ImageView imgDelete;
+        public ImageView imgDelete,imgProduct;
 
         public MyViewHolder(View view) {
             super(view);
@@ -39,6 +45,7 @@ public class NewOrderAdapter  extends RecyclerView.Adapter<NewOrderAdapter.MyVie
             tvAmount = (TextView) view.findViewById(R.id.tvAmount);
             tvDescription = (TextView) view.findViewById(R.id.tvDescription);
             imgDelete=(ImageView)view.findViewById(R.id.imgDelete);
+            imgProduct=(ImageView)view.findViewById(R.id.imgProduct);
 
         }
     }
@@ -61,13 +68,37 @@ public class NewOrderAdapter  extends RecyclerView.Adapter<NewOrderAdapter.MyVie
     public void onBindViewHolder(final NewOrderAdapter.MyViewHolder holder, final int position) {
 
         final NewOrderAdapter.MyViewHolder itemHolder = (NewOrderAdapter.MyViewHolder) holder;
-        final OrderLine orderLine = (OrderLine)orderLines.get(position);
-        if (orderLine!=null){
-            itemHolder.tvProductName.setText(orderLine.getProductname());
-            itemHolder.tvProductName.setTag(orderLine.getKey());
-            itemHolder.tvQty.setText(String.valueOf(orderLine.getQty()));
-            itemHolder.tvPrice.setText(currencySymbol + " " + orderLine.getPrice());
-            itemHolder.tvAmount.setText(currencySymbol + " " + orderLine.getAmount());
+        final OrderLine mOrderLine = (OrderLine)orderLines.get(position);
+        if (mOrderLine!=null){
+            itemHolder.tvProductName.setText(mOrderLine.getProductname());
+            itemHolder.tvProductName.setTag(mOrderLine.getKey());
+            itemHolder.tvQty.setText(String.valueOf(mOrderLine.getQty()));
+            itemHolder.tvPrice.setText(currencySymbol + " " + mOrderLine.getPrice());
+            itemHolder.tvAmount.setText(currencySymbol + " " + mOrderLine.getAmount());
+            itemHolder.tvDescription.setText(mOrderLine.getOrderdesc());
+            if (mOrderLine.getUrl() != null && !mOrderLine.getUrl().isEmpty() && !mOrderLine.getUrl().equals("NA")) {
+
+                String mImageUrl = "";
+                if (!TextUtils.isEmpty(mOrderLine.getUrl())) {
+                    mImageUrl = mOrderLine.getUrl();
+                }
+
+                final int radius = 5;
+                final int margin = 5;
+                final Transformation transformation = new RoundedCornersTransformation(radius, margin);
+                Picasso.with(mContext).load(mImageUrl).placeholder(R.drawable.placeholder).transform(transformation).networkPolicy(NetworkPolicy.OFFLINE).into(holder.imgProduct, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        String sImageUri = mOrderLine.getUrl();
+                        Picasso.with(mContext).load(sImageUri).placeholder(R.drawable.placeholder).transform(transformation).into(holder.imgProduct);
+                    }
+                });
+            }
           }
 
     }

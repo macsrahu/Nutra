@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Add to Cart"
         android:id="@+id/btnSubmit"
+        android:fontFamily="@font/lato"
         android:icon="@drawable/ic_baseline_add_shopping_cart_24"/>
     <item android:title="Cancel"
         android:id="@+id/btnCance"
+        android:fontFamily="@font/lato"
         android:icon="@drawable/ic_baseline_arrow_back_24"/>
 </menu>

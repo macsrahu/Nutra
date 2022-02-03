@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Next"
         android:id="@+id/btnNext"
+        android:fontFamily="@font/lato"
         android:icon="@drawable/ic_baseline_check_circle_outline_24"/>
     <item android:title="Add Product"
         android:id="@+id/btnAdd"
+        android:fontFamily="@font/lato"
         android:icon="@drawable/ic_baseline_add_shopping_cart_24"/>
     <item android:title="Exit"
         android:id="@+id/btnCance"
+        android:fontFamily="@font/lato"
         android:icon="@drawable/ic_baseline_arrow_back_24"/>
 </menu>

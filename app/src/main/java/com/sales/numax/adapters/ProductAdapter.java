@@ -24,6 +24,7 @@ import com.sales.numax.R;
 import com.sales.numax.model.OrderLine;
 import com.sales.numax.model.Product;
 import com.sales.numax.utility.Global;
+import com.sales.numax.utility.Messages;
 import com.sales.numax.utility.RoundedCornersTransformation;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
@@ -93,7 +94,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         String sumAmount = decimalFormat.format(dlbValue);
         return sumAmount;
     }
-
+    private String GetFormatedQty(Double dlbValue) {
+        DecimalFormat decimalFormat = new DecimalFormat("###");
+        String qty = decimalFormat.format(dlbValue);
+        return qty;
+    }
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
@@ -110,11 +115,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             itemHolder.imgDelete.setVisibility(View.GONE);
         }
 
+
         itemHolder.tvProductName.setText(mProduct.getProductname());
         itemHolder.tvProductName.setTag(mProduct.getKey());
         itemHolder.tvUoM.setText(mProduct.getUom());
         itemHolder.tvUoM.setTag(mProduct.getCategorykey());
         itemHolder.tvPrice.setText(currencySymbol + " " + mProduct.getPrice());
+
+        if (Global.ORDER_LINE != null) {
+            itemHolder.text_pockets.setText(GetQuantity(mProduct.getKey()));
+        }
 
         if (mProduct.getUrl() != null && !mProduct.getUrl().isEmpty() && !mProduct.getUrl().equals("NA")) {
 
@@ -139,6 +149,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 }
             });
         }
+    }
+
+    private String GetQuantity(String mProdKey) {
+        for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
+            if (Global.ORDER_LINE.get(i).getProductkey().equals(mProdKey)) {
+                return GetFormatedQty(Global.ORDER_LINE.get(i).getQty());
+            }
+        }
+        return "0";
     }
 
     private void ShowQtyModal(MyViewHolder itemHolder, int position, final Product mProduct) {
@@ -173,12 +192,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                                         mOrderLine.setProductname(mProduct.getProductname());
                                         mOrderLine.setPrice(mProduct.getPrice());
                                         mOrderLine.setAmount(dblAmt);
+                                        mOrderLine.setUrl(mProduct.getUrl());
                                         mOrderLine.setQty(dblQty);
                                         mOrderLine.setUom(mProduct.getUom());
                                         mOrderLine.setOrderkey("NA");
                                         mOrderLine.setKey("NA");
                                         String sDesc = String.valueOf(Integer.parseInt(input_quantity.getText().toString())) + "pocket(s) with (" + mProduct.getUom() + ") and price of " + String.valueOf(mProduct.getPrice());
                                         mOrderLine.setOrderdesc(sDesc);
+
+
                                         mOrderLine.setAmount(mProduct.getPrice() * dblQty);
                                         SaveAndRemoveOrder(1, mOrderLine);
                                         notifyDataSetChanged();
@@ -208,23 +230,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 Global.ORDER_LINE = new ArrayList<OrderLine>();
             }
             if (mode > 0) {
-
-
                 boolean isFound = false;
                 for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
-                    if (mOrderLine.getProductkey() == Global.ORDER_LINE.get(i).getProductkey()) {
+                    if (Global.ORDER_LINE.get(i).getProductkey().equals(mOrderLine.getProductkey())) {
                         isFound = true;
                         Global.ORDER_LINE.get(i).setQty(mOrderLine.getQty());
                         Global.ORDER_LINE.get(i).setUom(mOrderLine.getUom());
                         Global.ORDER_LINE.get(i).setAmount(mOrderLine.getAmount());
-                       // Toast.makeText(mContext,mOrderLine.getProductname(),Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
                 if (!isFound) {
                     Global.ORDER_LINE.add(mOrderLine);
                 }
-                Toast.makeText(mContext,String.valueOf( Global.ORDER_LINE.size()),Toast.LENGTH_LONG).show();
+                // Toast.makeText(mContext,String.valueOf( Global.ORDER_LINE.size()),Toast.LENGTH_LONG).show();
             } else {
                 for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
                     if (mOrderLine.getProductkey().equals(Global.ORDER_LINE.get(i).getProductkey())) {
