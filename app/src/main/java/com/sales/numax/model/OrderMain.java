@@ -9,7 +9,7 @@ public class OrderMain implements Serializable {
 
     String key;
     String orderno;
-    String orderdata;
+    String orderdate;
     String dealerkey;
     String dealer;
     String address;
@@ -39,12 +39,12 @@ public class OrderMain implements Serializable {
         this.orderno = orderno;
     }
 
-    public String getOrderdata() {
-        return orderdata;
+    public String getOrderdate() {
+        return orderdate;
     }
 
-    public void setOrderdata(String orderdata) {
-        this.orderdata = orderdata;
+    public void setOrderdate(String orderdate) {
+        this.orderdate = orderdate;
     }
 
     public String getDealerkey() {

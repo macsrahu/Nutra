@@ -57,6 +57,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         private TextView tvProductName, tvUoM, tvPrice, text_pockets;
         public ImageView imgProduct, imgDelete;
+        public LinearLayout layItemMain;
 
         public MyViewHolder(View view) {
             super(view);
@@ -67,6 +68,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             text_pockets = (TextView) view.findViewById(R.id.text_pockets);
             imgProduct = (ImageView) view.findViewById(R.id.imgProduct);
             imgDelete = (ImageView) view.findViewById(R.id.imgDelete);
+            layItemMain = (LinearLayout) view.findViewById(R.id.layItemMain);
 
         }
     }
@@ -94,22 +96,36 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         String sumAmount = decimalFormat.format(dlbValue);
         return sumAmount;
     }
+
     private String GetFormatedQty(Double dlbValue) {
         DecimalFormat decimalFormat = new DecimalFormat("###");
         String qty = decimalFormat.format(dlbValue);
         return qty;
     }
+
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
 
         final MyViewHolder itemHolder = (MyViewHolder) holder;
         final Product mProduct = (Product) productList.get(position);
-
+        itemHolder.imgDelete.setVisibility(View.GONE);
         if (Global.MENU_FROM == "ORDER") {
             itemHolder.text_pockets.setVisibility(View.VISIBLE);
-            itemHolder.imgDelete.setVisibility(View.VISIBLE);
-            ShowQtyModal(itemHolder, position, mProduct);
+            //itemHolder.imgDelete.setVisibility(View.VISIBLE);
+            itemHolder.text_pockets.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowQtyModal(itemHolder, position, mProduct);
+                }
+            });
+            itemHolder.layItemMain.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowQtyModal(itemHolder, position, mProduct);
+                }
+            });
+
         } else {
             itemHolder.text_pockets.setVisibility(View.GONE);
             itemHolder.imgDelete.setVisibility(View.GONE);
@@ -126,8 +142,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             itemHolder.text_pockets.setText(GetQuantity(mProduct.getKey()));
         }
 
-        if (mProduct.getUrl() != null && !mProduct.getUrl().isEmpty() && !mProduct.getUrl().equals("NA")) {
 
+//        itemHolder.layItemMain.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ShowQtyModal(itemHolder, position, mProduct);
+//            }
+//        });
+
+
+        if (mProduct.getUrl() != null && !mProduct.getUrl().isEmpty() && !mProduct.getUrl().equals("NA")) {
             String mImageUrl = "";
             if (!TextUtils.isEmpty(mProduct.getUrl())) {
                 mImageUrl = mProduct.getUrl();
@@ -161,98 +185,105 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     }
 
     private void ShowQtyModal(MyViewHolder itemHolder, int position, final Product mProduct) {
-        itemHolder.text_pockets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final MaterialDialog dialogQty = new MaterialDialog.Builder(mActivity)
-                        .title("Enter Quantity")
-                        .autoDismiss(true)
-                        .customView(R.layout.dialog_quantity, true)
-                        .positiveText("OK")
-                        .negativeText(android.R.string.cancel)
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                                notifyItemChanged(position);
+
+        final MaterialDialog dialogQty = new MaterialDialog.Builder(mActivity)
+                .title("Enter Quantity")
+                .autoDismiss(true)
+                .customView(R.layout.dialog_quantity, true)
+                .positiveText("OK")
+                .negativeText(android.R.string.cancel)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        notifyItemChanged(position);
+                    }
+                })
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        if (!input_quantity.getText().toString().isEmpty()) {
+                            if (!input_quantity.getText().toString().equalsIgnoreCase("0")) {
+                                int Quantity = 1;
+                                double dblQty = Double.parseDouble(input_quantity.getText().toString());
+                                double dblAmt = dblQty * mProduct.getPrice();
+                                itemHolder.text_pockets.setText(input_quantity.getText().toString());
+
+                                OrderLine mOrderLine = new OrderLine();
+                                mOrderLine.setProductkey(mProduct.getKey());
+                                mOrderLine.setProductname(mProduct.getProductname());
+                                mOrderLine.setPrice(mProduct.getPrice());
+                                mOrderLine.setAmount(dblAmt);
+                                mOrderLine.setUrl(mProduct.getUrl());
+                                mOrderLine.setQty(dblQty);
+                                mOrderLine.setUom(mProduct.getUom());
+                                mOrderLine.setOrderkey("NA");
+                                mOrderLine.setKey("NA");
+                                String sAmount = Global.GetFormatedValue(mProduct.getPrice() * dblQty);
+                                String sDesc = String.valueOf(Integer.parseInt(input_quantity.getText().toString())) + " pocket(s) of " + mProduct.getUom() + " and amount is " + sAmount;
+                                mOrderLine.setOrderdesc(sDesc);
+
+                                mOrderLine.setAmount(mProduct.getPrice() * dblQty);
+                                AddToCart(mOrderLine);
+                                notifyDataSetChanged();
+                            } else {
+                                RemoveFromCart(mProduct.getKey());
+                                notifyDataSetChanged();
                             }
-                        })
-                        .onPositive(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                if (!input_quantity.getText().toString().isEmpty()) {
-                                    if (!input_quantity.getText().toString().equalsIgnoreCase("0")) {
-                                        int Quantity = 1;
-                                        double dblQty = Double.parseDouble(input_quantity.getText().toString());
-                                        double dblAmt = dblQty * mProduct.getPrice();
-                                        itemHolder.text_pockets.setText(input_quantity.getText().toString());
+                        } else {
+                            RemoveFromCart(mProduct.getKey());
+                            notifyDataSetChanged();
+                        }
 
-                                        OrderLine mOrderLine = new OrderLine();
-                                        mOrderLine.setProductkey(mProduct.getKey());
-                                        mOrderLine.setProductname(mProduct.getProductname());
-                                        mOrderLine.setPrice(mProduct.getPrice());
-                                        mOrderLine.setAmount(dblAmt);
-                                        mOrderLine.setUrl(mProduct.getUrl());
-                                        mOrderLine.setQty(dblQty);
-                                        mOrderLine.setUom(mProduct.getUom());
-                                        mOrderLine.setOrderkey("NA");
-                                        mOrderLine.setKey("NA");
-                                        String sDesc = String.valueOf(Integer.parseInt(input_quantity.getText().toString())) + "pocket(s) with (" + mProduct.getUom() + ") and price of " + String.valueOf(mProduct.getPrice());
-                                        mOrderLine.setOrderdesc(sDesc);
+                    }
+                }).build();
+        dialogQty.show();
+
+        positiveAction = dialogQty.getActionButton(DialogAction.POSITIVE);
+        input_quantity = (TextInputEditText) dialogQty.findViewById(R.id.input_quantity);
+        if (!itemHolder.text_pockets.getText().toString().isEmpty()) {
+            input_quantity.setText(itemHolder.text_pockets.getText());
+        }else{
+            input_quantity.setText("");
+        }
+        input_quantity.selectAll();
+        input_quantity.requestFocus();
 
 
-                                        mOrderLine.setAmount(mProduct.getPrice() * dblQty);
-                                        SaveAndRemoveOrder(1, mOrderLine);
-                                        notifyDataSetChanged();
-                                    }
-                                }
-
-                            }
-                        }).build();
-                dialogQty.show();
-                positiveAction = dialogQty.getActionButton(DialogAction.POSITIVE);
-                input_quantity = (TextInputEditText) dialogQty.findViewById(R.id.input_quantity);
-                if (input_quantity.getText().toString().isEmpty()) {
-                    input_quantity.setText(itemHolder.text_pockets.getText());
-                }
-                input_quantity.selectAll();
-                input_quantity.requestFocus();
-
-
-            }
-        });
     }
 
-    private void SaveAndRemoveOrder(int mode, OrderLine mOrderLine) {
+    private void AddToCart(OrderLine mOrderLine) {
 
         if (mOrderLine != null) {
             if (Global.ORDER_LINE == null) {
                 Global.ORDER_LINE = new ArrayList<OrderLine>();
             }
-            if (mode > 0) {
-                boolean isFound = false;
-                for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
-                    if (Global.ORDER_LINE.get(i).getProductkey().equals(mOrderLine.getProductkey())) {
-                        isFound = true;
-                        Global.ORDER_LINE.get(i).setQty(mOrderLine.getQty());
-                        Global.ORDER_LINE.get(i).setUom(mOrderLine.getUom());
-                        Global.ORDER_LINE.get(i).setAmount(mOrderLine.getAmount());
-                        break;
-                    }
+            boolean isFound = false;
+            for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
+                if (Global.ORDER_LINE.get(i).getProductkey().equals(mOrderLine.getProductkey())) {
+                    isFound = true;
+                    Global.ORDER_LINE.get(i).setQty(mOrderLine.getQty());
+                    Global.ORDER_LINE.get(i).setUom(mOrderLine.getUom());
+                    Global.ORDER_LINE.get(i).setAmount(mOrderLine.getAmount());
+                    break;
                 }
-                if (!isFound) {
-                    Global.ORDER_LINE.add(mOrderLine);
-                }
-                // Toast.makeText(mContext,String.valueOf( Global.ORDER_LINE.size()),Toast.LENGTH_LONG).show();
-            } else {
-                for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
-                    if (mOrderLine.getProductkey().equals(Global.ORDER_LINE.get(i).getProductkey())) {
-                        Global.ORDER_LINE.remove(i);
-                    }
+            }
+            if (!isFound) {
+                Global.ORDER_LINE.add(mOrderLine);
+            }
+        }
+    }
+
+    private void RemoveFromCart(String sProductKey) {
+        if (Global.ORDER_LINE != null && Global.ORDER_LINE.size() > 0) {
+            for (int i = 0; i < Global.ORDER_LINE.size(); i++) {
+                if (Global.ORDER_LINE.get(i).getProductkey().equals(sProductKey)) {
+                    Global.ORDER_LINE.remove(i);
                 }
             }
         }
     }
+
 
     @Override
     public long getItemId(int position) {

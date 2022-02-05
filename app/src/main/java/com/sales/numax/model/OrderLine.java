@@ -15,12 +15,20 @@ public class OrderLine implements Serializable {
     String uom;
     String catkey;
     String url;
-
+    int lineno;
     double price;
     double Qty;
     double amount;
 
     public OrderLine(){}
+
+    public int getLineno() {
+        return lineno;
+    }
+
+    public void setLineno(int lineno) {
+        this.lineno = lineno;
+    }
 
     public String getKey() {
         return key;

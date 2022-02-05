@@ -11,6 +11,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.ParcelUuid;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,8 +145,38 @@ public class Global {
     }
 
     public static String GetFormatedValue(Double dlbValue) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String currencySymbol = "₹ ";
+        DecimalFormat decimalFormat = new DecimalFormat("##,##,###.00");
         String sumAmount = decimalFormat.format(dlbValue);
-        return sumAmount;
+        return  currencySymbol + sumAmount;
     }
+    public static String GetFormatedValueWithoutDecimal(Double dlbValue) {
+        String currencySymbol = "₹ ";
+        DecimalFormat decimalFormat = new DecimalFormat("###");
+        String sumAmount = decimalFormat.format(dlbValue);
+        return  currencySymbol + sumAmount;
+    }
+    public static String GetDealerAddress(Dealer customers) {
+        String sAddress = "";
+
+        if (customers.getAddressline1() != null && !customers.getAddressline1().isEmpty() && !customers.getAddressline1().equalsIgnoreCase("NA")) {
+            sAddress = customers.getAddressline1() + "\n";
+        }
+
+        if (customers.getAddressline2() != null && !customers.getAddressline2().trim().isEmpty() && !customers.getAddressline2().equalsIgnoreCase("NA")) {
+            sAddress = sAddress + (!TextUtils.isEmpty(sAddress) ? (!customers.getAddressline2().isEmpty() ? customers.getAddressline2() + "\n" : "") : "");
+        }
+
+        if (customers.getCity() != null && !customers.getCity().isEmpty() && !customers.getCity().trim().isEmpty()) {
+            sAddress = sAddress + (!TextUtils.isEmpty(sAddress) ? customers.getCity() : "");
+        }
+
+        if (customers.getPincode() != null && !customers.getPincode().isEmpty()) {
+            sAddress = sAddress + "-" + (!TextUtils.isEmpty(sAddress) ? customers.getPincode() : "");
+        }
+
+        return sAddress;
+
+    }
+
 }

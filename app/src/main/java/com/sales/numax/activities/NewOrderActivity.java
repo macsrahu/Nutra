@@ -77,11 +77,21 @@ public class NewOrderActivity extends AppCompatActivity {
     }
 
     private void InitControls() {
+
+        layTotal.setVisibility(View.GONE);
         bottomNavigation.setVisibility(View.VISIBLE);
         bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
 
                 case R.id.btnNext:
+                    if (Global.ORDER_LINE.size() > 0) {
+                        Intent iDealerEntry = new Intent(NewOrderActivity.this, OrderReviewAndSubmitActivity.class);
+                        iDealerEntry.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(iDealerEntry);
+                        finish();
+                    } else {
+                        Messages.ShowToast(getApplicationContext(), "No order found to submit!!");
+                    }
 
                     break;
 
@@ -110,7 +120,7 @@ public class NewOrderActivity extends AppCompatActivity {
         rvOrderItems.setItemAnimator(new DefaultItemAnimator());
         final ProgressDialog dialog = ProgressDialog.show(this,
                 null,
-                "Loading dealer",
+                "Loading orders",
                 true);
         dialog.setInverseBackgroundForced(true);
         dialog.show();

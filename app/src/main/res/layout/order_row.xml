@@ -28,6 +28,15 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/title_radious">
 
+                <ImageView
+                    android:id="@+id/imgDelete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="@dimen/_5ssp"
+                    android:layout_gravity="center|left"
+                    android:fontFamily="@font/lato"
+                    android:src="@drawable/ic_outline_removel_24"></ImageView>
+
                 <TextView
                     android:id="@+id/tvProductName"
                     android:layout_width="match_parent"
@@ -41,14 +50,6 @@
                     android:text="Product"
                     android:textColor="@color/white" />
 
-                <ImageView
-                    android:id="@+id/imgDelete"
-                    android:layout_width="-20dp"
-                    android:layout_height="-20dp"
-                    android:layout_gravity="right"
-                    android:fontFamily="@font/lato"
-                    android:padding="@dimen/_2ssp"
-                    android:src="@drawable/ic_baseline_delete_outline_24"></ImageView>
 
             </LinearLayout>
 
@@ -125,7 +126,7 @@
                             android:layout_weight="0"
                             android:fontFamily="@font/lato"
                             android:padding="@dimen/_2ssp"
-                            android:text="Price" />
+                            android:text="Price (1 pocket)" />
 
                         <TextView
                             android:id="@+id/tvPrice"
@@ -184,9 +185,12 @@
                 <TextView
                     android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:padding="@dimen/_2ssp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/lato"
-                    android:text="About order description"></TextView>
+                    android:text="About order description"
+                    android:gravity="center_horizontal"></TextView>
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

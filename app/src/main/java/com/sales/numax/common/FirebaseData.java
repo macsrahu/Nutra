@@ -41,6 +41,11 @@ public class FirebaseData {
                 //dialog.dismiss();
 
                 if (task.isSuccessful()) {
+//                    Category mCategory= new Category();
+//                    mCategory.setCategoryname("ALL CATEGORY");
+//                    mCategory.setKey("ALL");
+//                    mCategory.setIsactive(1);
+//                    Global.CATEGORY_LIST.add(0, mCategory);
                     for (DataSnapshot categorySnapshot : task.getResult().getChildren()) {
                         Category category = categorySnapshot.getValue(Category.class);
                         if (category != null) {
@@ -51,7 +56,6 @@ public class FirebaseData {
                             }
                         }
                     }
-                    Toast.makeText(mContext, "Super", Toast.LENGTH_LONG).show();
                     Paper.book().write("categorylist", Global.CATEGORY_LIST);
                 } else {
                     //dialog.dismiss();

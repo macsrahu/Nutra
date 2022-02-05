@@ -93,7 +93,7 @@ public class TrackingService extends Service {
         public void onReceive(Context context, Intent intent) {
             unregisterReceiver(stopReceiver);
             stopSelf();
-            Toast.makeText(getApplicationContext(),"Tracking Service has been stopped",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Tracking Service has been stopped", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -107,8 +107,8 @@ public class TrackingService extends Service {
         //request.setInterval(10000);
 
         request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        request.setInterval(5000);
-        request.setFastestInterval(1000);
+        request.setInterval(50000);
+        request.setFastestInterval(10000);
 
         //Log.d("TWO",SALES_PERSON_KEY);
         //Get the most accurate location data available//
@@ -129,13 +129,11 @@ public class TrackingService extends Service {
                     Location location = locationResult.getLastLocation();
                     if (location != null) {
                         //Toast.makeText(getApplicationContext(),"COOL",Toast.LENGTH_LONG).show();
-                        SharedPreferences sharedPref = getSharedPreferences("REMEMBER_ME_NUTRA", MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("NUMAX_REMEMBER_ME", MODE_PRIVATE);
                         boolean saveLogin = sharedPref.getBoolean("saveLogin", false);
                         if (saveLogin) {
                             String USERKEY = sharedPref.getString("loginid", "");
-                            ///Toast.makeText(getApplicationContext(),"COOL121",Toast.LENGTH_LONG).show();
                             if (USERKEY != null && !USERKEY.isEmpty()) {
-
                                 ref.child(USERKEY).setValue(location);
                             }
 

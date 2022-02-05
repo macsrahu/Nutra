@@ -4,7 +4,7 @@
 
     <!-- View background color -->
     <solid
-        android:color="@color/dark_grey" >
+        android:color="@color/smsp_transparent_color" >
     </solid>
 
     <!-- View border color and width -->
@@ -15,7 +15,7 @@
 
     <!-- The radius makes the corners rounded -->
     <corners
-        android:radius="7dp"
+        android:radius="0dp"
         android:bottomRightRadius="7dp"
         android:bottomLeftRadius="7dp"
         android:topLeftRadius="0dp"

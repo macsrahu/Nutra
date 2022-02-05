@@ -21,6 +21,7 @@ import com.sales.numax.R;
 import com.sales.numax.activities.DealerEntry;
 import com.sales.numax.activities.NewOrderActivity;
 import com.sales.numax.model.Dealer;
+import com.sales.numax.model.OrderLine;
 import com.sales.numax.utility.Global;
 import com.sales.numax.utility.RoundedCornersTransformation;
 import com.skydoves.powermenu.CustomPowerMenu;
@@ -180,6 +181,7 @@ public class DealerAdapter extends RecyclerView.Adapter<DealerAdapter.MyViewHold
             }
             else if (item.getTitle().equals("New Order")) {
                 if (Global.SELECTED_DEALER != null) {
+                    Global.ORDER_LINE=new ArrayList<OrderLine>();
                     Intent iDep = new Intent(mContext, NewOrderActivity.class);
                     iDep.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(iDep);

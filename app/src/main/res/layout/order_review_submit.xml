@@ -15,10 +15,52 @@
         android:background="@color/colorPrimary"
         android:elevation="4dp" />
 
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5ssp"
+        android:layout_marginRight="@dimen/_10ssp"
+        android:layout_marginBottom="@dimen/_5ssp"
+        android:background="@drawable/expand_panel_border"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvShopName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_2ssp"
+            android:background="@drawable/title_radious"
+            android:fontFamily="@font/lato"
+            android:gravity="center_horizontal|center_vertical"
+            android:lines="1"
+            android:padding="@dimen/_5ssp"
+            android:text="Shop"
+            android:textColor="@color/white"></TextView>
+
+        <TextView
+            android:id="@+id/tvDealer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/lato"
+            android:gravity="center_horizontal|center_vertical"
+            android:lines="3"
+            android:padding="@dimen/_5ssp"
+            android:text="Dealer"
+            android:textColor="@color/gray"
+            android:visibility="visible"></TextView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <LinearLayout
         android:id="@+id/relProducts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:background="@drawable/expand_panel_border"
+        android:layout_marginRight="@dimen/_10ssp"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -28,9 +70,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/cardSpinner"
+
             android:clipToPadding="false"
-            android:scrollbars="vertical"
-            android:visibility="gone" />
+            android:padding="@dimen/_4ssp"
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/tvNoRecordFound"
@@ -43,15 +86,16 @@
             android:textAllCaps="false"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/gray"
-            android:textSize="@dimen/_16ssp"
-            android:visibility="visible"></TextView>
+            android:textSize="@dimen/_16ssp"></TextView>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_2ssp"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginRight="@dimen/_10ssp"
+        android:layout_marginBottom="@dimen/_5ssp"
         android:background="@color/light_grey"
         android:orientation="horizontal"
         android:padding="@dimen/_5ssp">
@@ -91,6 +135,6 @@
         app:itemRippleColor="@color/colorAccent"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu_order" /><!--    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation-->
+        app:menu="@menu/menu_review_submit" /><!--    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation-->
 
 </LinearLayout>

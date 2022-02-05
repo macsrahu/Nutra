@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Submit"
+        android:id="@+id/btnSubmit"
+        android:fontFamily="@font/lato"
+        android:icon="@drawable/ic_baseline_offline_pin_24"/>
+    <item android:title="Cancel"
+        android:id="@+id/btnCancel"
+        android:fontFamily="@font/lato"
+        android:icon="@drawable/ic_baseline_360_24"/>
+</menu>

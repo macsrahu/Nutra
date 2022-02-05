@@ -92,10 +92,17 @@ public class ProductsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent iMain = new Intent(ProductsActivity.this, MainActivity.class);
-        iMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(iMain);
-        finish();
+        if (Global.MENU_FROM == "ORDER") {
+            Intent iMain = new Intent(ProductsActivity.this, NewOrderActivity.class);
+            iMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(iMain);
+            finish();
+        } else {
+            Intent iMain = new Intent(ProductsActivity.this, MainActivity.class);
+            iMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(iMain);
+            finish();
+        }
     }
 
     @Override
@@ -154,11 +161,12 @@ public class ProductsActivity extends AppCompatActivity {
     private void LoadSubCategory() {
         FirebaseData.LoadCategory(getApplicationContext());
         if (Global.CATEGORY_LIST != null) {
+
             MaterialSpinnerAdapter spinnerCategoryAdapter = new MaterialSpinnerAdapter<Category>(getBaseContext(), Global.CATEGORY_LIST);
             spinnerCategory.setAdapter(spinnerCategoryAdapter);
             //spinnerCategory.setSelectedIndex(1);
             spinnerCategory.setSelected(true);
-            spinnerCategory.setText("SELECT CATEGORY");
+            spinnerCategory.setText("ALL PRODUCTS");
             spinnerCategory.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<Category>() {
                 @Override
                 public void onItemSelected(MaterialSpinner view, int position, long id, Category item) {
@@ -172,6 +180,8 @@ public class ProductsActivity extends AppCompatActivity {
                 }
             });
             spinnerCategory.performClick();
+            //LoadProductsByCategory("ALL");
+
         }
 
     }
@@ -216,7 +226,6 @@ public class ProductsActivity extends AppCompatActivity {
                 } else {
                     dialog.dismiss();
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    Log.d("firebase", task.getException().getMessage());
                 }
             }
         });

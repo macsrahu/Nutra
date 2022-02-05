@@ -8,11 +8,12 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/expand_panel_border"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/expand_panel_border"
         app:cardCornerRadius="7dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
@@ -21,39 +22,39 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
+            android:id="@+id/layMain"
             android:orientation="vertical"
             android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/title_radious"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/title_radious">
 
                 <TextView
                     android:id="@+id/tvProductName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.40"
+                    android:fontFamily="@font/lato"
                     android:gravity="center_horizontal"
                     android:includeFontPadding="false"
                     android:lines="1"
-                    android:layout_weight="0.40"
-                    android:fontFamily="@font/lato"
                     android:padding="@dimen/_5ssp"
                     android:text="Product"
                     android:textColor="@color/white" />
 
                 <ImageView
+                    android:id="@+id/imgDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imgDelete"
-                    android:padding="@dimen/_2ssp"
-                    android:fontFamily="@font/lato"
                     android:layout_gravity="right"
+                    android:fontFamily="@font/lato"
+                    android:padding="@dimen/_2ssp"
                     android:src="@drawable/ic_baseline_delete_outline_24"
                     tools:ignore="InvalidId"></ImageView>
 
             </LinearLayout>
-
 
 
             <!-- PRODUCT -->
@@ -98,9 +99,9 @@
                         android:id="@+id/tvUoM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
                         android:includeFontPadding="false"
                         android:padding="@dimen/_2ssp"
-                        android:fontFamily="@font/lato"
                         android:text="Unit of Measurement" />
 
 
@@ -108,9 +109,9 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
                         android:includeFontPadding="false"
                         android:padding="@dimen/_2ssp"
-                        android:fontFamily="@font/lato"
                         android:text="Price" />
 
                 </LinearLayout>
@@ -119,19 +120,20 @@
                     android:id="@+id/layOrder"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight=".50"
+                    android:layout_weight=".45"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="@dimen/_2ssp">
 
                     <TextView
                         android:id="@+id/text_pockets"
-                        android:textSize="@dimen/_20ssp"
-                        android:fontFamily="@font/lato"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0">
-
+                        android:fontFamily="@font/lato"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_20ssp">
                     </TextView>
 
                 </LinearLayout>
