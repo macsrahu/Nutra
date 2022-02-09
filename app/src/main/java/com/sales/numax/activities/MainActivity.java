@@ -24,7 +24,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -36,11 +35,10 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.sales.numax.R;
-import com.sales.numax.Service.TrackingService;
-import com.sales.numax.adapters.MenuAdapter;
-import com.sales.numax.adapters.ProductAdapter;
-import com.sales.numax.adapters.SalesAdapter;
 import com.sales.numax.common.FirebaseData;
+import com.sales.numax.service.TrackingService;
+import com.sales.numax.adapters.MenuAdapter;
+import com.sales.numax.adapters.SalesAdapter;
 import com.sales.numax.model.ApplicationMenu;
 import com.sales.numax.model.SalesAbstract;
 import com.sales.numax.utility.Global;
@@ -73,10 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
         InitDrawerMenu(mToolbar);
         SetupMainMenu();
-
+        FirebaseData.LoadCompany(getApplicationContext());
         BindSalesAbstract();
-
-
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
     private void LocationAccessPermission() {

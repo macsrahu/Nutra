@@ -20,6 +20,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.sales.numax.R;
 import com.sales.numax.activities.DealerEntry;
 import com.sales.numax.activities.DealersActivity;
+import com.sales.numax.activities.MyOrdersListActivity;
 import com.sales.numax.activities.NewOrderActivity;
 import com.sales.numax.activities.ProductsActivity;
 import com.sales.numax.model.ApplicationMenu;
@@ -68,6 +69,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                     mContext.startActivity(iDealerEntry);
 
                 } else if (applicationMenu.getCode().equals("004")) {
+                    Intent iOrders = new Intent(mActivity, MyOrdersListActivity.class);
+                    iOrders.putExtra("FROM", "MAIN");
+                    iOrders.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    mContext.startActivity(iOrders);
 
                 } else if (applicationMenu.getCode().equals("005")) {
                 }
@@ -96,7 +101,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
         if (applicationMenu != null) {
             holder.tvTitle.setText(applicationMenu.getTitle());
             holder.tvDescription.setText(applicationMenu.getDescription());
-            if (applicationMenu.getImage()!=null){
+            if (applicationMenu.getImage() != null) {
                 holder.imgMenu.setImageDrawable(applicationMenu.getImage());
             }
 

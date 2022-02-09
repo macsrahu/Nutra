@@ -1,4 +1,4 @@
-package com.sales.numax.Service;
+package com.sales.numax.service;
 
 import android.Manifest;
 import android.app.NotificationChannel;

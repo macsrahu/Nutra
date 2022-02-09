@@ -18,4 +18,5 @@
     <color name="dark_grey">#A9A9A9</color>
     <color name="gray">#808080</color>
     <color name="dimgray">#696969</color>
+    <color name="transparent">#00ffffff</color>
 </resources>

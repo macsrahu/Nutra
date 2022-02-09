@@ -22,8 +22,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.sales.numax.R;
 import com.sales.numax.model.Category;
+import com.sales.numax.model.Company;
 import com.sales.numax.model.Dealer;
 import com.sales.numax.model.OrderLine;
+import com.sales.numax.model.OrderMain;
 import com.sales.numax.model.Route;
 import com.sales.numax.model.UserDetail;
 
@@ -33,21 +35,23 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Global {
-    public static boolean IsHosted=false;
+    public static boolean IsHosted = false;
     static Boolean isNetAvailable = false;
-    public static int USER_TYPE=0;
-    public static String USER_CODE="";
+    public static int USER_TYPE = 0;
+    public static String USER_CODE = "";
     public static final String _URL_KEY = "UrlKey";
-    public static UserDetail LOGIN_USER_DETAIL=null;
-    public static Category SELECTED_CATEGORY=new Category();
+    public static UserDetail LOGIN_USER_DETAIL = null;
+    public static Category SELECTED_CATEGORY = new Category();
     public static ArrayList<Category> CATEGORY_LIST = new ArrayList<Category>();
     public static ArrayList<Route> ROUTES = new ArrayList<Route>();
-    public static Dealer SELECTED_DEALER=null;
-    public static String DEALER_KEY="";
-    public  static String SHOP_NAME="";
-    public static String MENU_FROM="";
+    public static Dealer SELECTED_DEALER = null;
+    public static String DEALER_KEY = "";
+    public static String SHOP_NAME = "";
+    public static String MENU_FROM = "";
 
-    public static ArrayList<OrderLine> ORDER_LINE=null;
+    public static Company COMPANY=null;
+    public static OrderMain SELECTED_ORDER_MAIN;
+    public static ArrayList<OrderLine> ORDER_LINE = null;
 
     public static Toolbar PrepareToolBar(final Activity context, boolean isBackButtonVisible, String title) {
         Toolbar toolbar = (Toolbar) context.findViewById(R.id.toolbar);
@@ -71,8 +75,8 @@ public class Global {
     }
 
     @SuppressLint("WrongConstant")
-    public static void ShowSnackMessage(Activity mActivity, String message){
-        View parentLayout =  mActivity.findViewById(android.R.id.content);
+    public static void ShowSnackMessage(Activity mActivity, String message) {
+        View parentLayout = mActivity.findViewById(android.R.id.content);
         Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_LONG);
         snackbar.setDuration(Snackbar.LENGTH_LONG);
         snackbar.show();
@@ -148,14 +152,16 @@ public class Global {
         String currencySymbol = "₹ ";
         DecimalFormat decimalFormat = new DecimalFormat("##,##,###.00");
         String sumAmount = decimalFormat.format(dlbValue);
-        return  currencySymbol + sumAmount;
+        return currencySymbol + sumAmount;
     }
+
     public static String GetFormatedValueWithoutDecimal(Double dlbValue) {
         String currencySymbol = "₹ ";
         DecimalFormat decimalFormat = new DecimalFormat("###");
         String sumAmount = decimalFormat.format(dlbValue);
-        return  currencySymbol + sumAmount;
+        return currencySymbol + sumAmount;
     }
+
     public static String GetDealerAddress(Dealer customers) {
         String sAddress = "";
 

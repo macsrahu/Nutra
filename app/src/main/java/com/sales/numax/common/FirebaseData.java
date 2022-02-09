@@ -18,9 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.sales.numax.activities.LoginActivity;
 import com.sales.numax.activities.MainActivity;
 import com.sales.numax.model.Category;
+import com.sales.numax.model.Company;
 import com.sales.numax.model.Route;
 import com.sales.numax.model.UserDetail;
 import com.sales.numax.utility.Global;
+import com.sales.numax.utility.Messages;
 
 import java.util.ArrayList;
 
@@ -90,9 +92,43 @@ public class FirebaseData {
                                 }
                             }
                         }
-                        if (Global.ROUTES!=null) {
+                        if (Global.ROUTES != null) {
                             Paper.book().write("routes", Global.ROUTES);
                         }
+                    } else {
+                        //dialog.dismiss();
+                        Toast.makeText(mContext, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Log.d("firebase", task.getException().getMessage());
+                    }
+                }
+            });
+        }
+    }
+
+    public static void LoadCompany(Context mContext) {
+
+        Global.COMPANY = Paper.book().read("company");
+        if (Global.COMPANY == null) {
+
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(FirebaseTables.TBL_COMPANY);
+            mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    //dialog.dismiss();
+
+                    if (task.isSuccessful()) {
+
+                        for (DataSnapshot companySnapshot : task.getResult().getChildren()) {
+                            Company mCompany = companySnapshot.getValue(Company.class);
+                            if (mCompany != null) {
+                                Global.COMPANY = mCompany;
+                                if (Global.COMPANY != null) {
+                                    Paper.book().write("company", Global.COMPANY);
+                                }
+                                Messages.ShowToast(mContext, "Company info captured");
+                            }
+                        }
+
                     } else {
                         //dialog.dismiss();
                         Toast.makeText(mContext, task.getException().getMessage(), Toast.LENGTH_LONG).show();

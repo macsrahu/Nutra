@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sales.numax">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -59,6 +60,10 @@
             android:name="com.sales.numax.activities.OrderReviewAndSubmitActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.sales.numax.activities.MyOrdersListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <!--        <service android:name="com.oms.bridle.MyFirebaseMessagingService">-->
         <!--            <intent-filter>-->
@@ -71,7 +76,7 @@
         <!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />-->
         <!--            </intent-filter>-->
         <!--        </service>-->
-        <service android:name=".Service.TrackingService" />
+        <service android:name=".service.TrackingService" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
