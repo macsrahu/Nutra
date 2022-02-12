@@ -199,14 +199,7 @@ public class OrderReviewAndSubmitActivity extends AppCompatActivity {
                     mDataOrderLineItem.child(sKey).child(mLineKey).setValue(ordersLineItems).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Global.ORDER_LINE = new ArrayList<OrderLine>();
-                            Global.SELECTED_DEALER = null;
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Global.ORDER_LINE = new ArrayList<OrderLine>();
-                            Global.SELECTED_DEALER = null;
+
                         }
                     });
                 }

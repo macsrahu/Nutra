@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import com.sales.numax.R;
+import com.sales.numax.activities.MyOrderDetail;
 import com.sales.numax.activities.MyOrdersListActivity;
 import com.sales.numax.common.FirebaseTables;
 import com.sales.numax.model.OrderLine;
@@ -61,7 +62,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.MyViewHold
         public TextView tvOrderNo, tvOrderDate, tvOrderStatus, tvOrderAddress, tvOrderAmount;
         public MaterialCardView cardOrderRow;
 
-        public ImageView btnPrinter;
+        public ImageView btnPrinter, btnViewOrder;
         public View lineView;
 
         public MyViewHolder(View view) {
@@ -77,6 +78,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.MyViewHold
             lineView = (View) view.findViewById(R.id.lineView);
 
             btnPrinter = (ImageView) view.findViewById(R.id.btnPrinter);
+            btnViewOrder = (ImageView) view.findViewById(R.id.btnViewOrder);
             cardOrderRow.setOnClickListener(this);
         }
 
@@ -132,6 +134,20 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.MyViewHold
 //                } else {
 //                    Toast.makeText(mActivity, "Order detail not selected", Toast.LENGTH_LONG).show();
 //                }
+            }
+        });
+
+        holder.btnViewOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Global.SELECTED_ORDER_MAIN = ordersMain;
+                if (Global.SELECTED_ORDER_MAIN != null) {
+                    Intent iPrintView = new Intent(mContext, MyOrderDetail.class);
+                    iPrintView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(iPrintView);
+                } else {
+                    Toast.makeText(mActivity, "Order detail not selected", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

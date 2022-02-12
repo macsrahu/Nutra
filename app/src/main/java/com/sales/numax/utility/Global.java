@@ -52,6 +52,7 @@ public class Global {
     public static Company COMPANY=null;
     public static OrderMain SELECTED_ORDER_MAIN;
     public static ArrayList<OrderLine> ORDER_LINE = null;
+    public static String PDF_FILE="";
 
     public static Toolbar PrepareToolBar(final Activity context, boolean isBackButtonVisible, String title) {
         Toolbar toolbar = (Toolbar) context.findViewById(R.id.toolbar);

@@ -1,0 +1,48 @@
+crl/android/pdfwriter/List.java
+ crl.android.pdfwriter.List
+crl/android/pdfwriter/PDFWriter.java
+ crl.android.pdfwriter.PDFWriter
+crl/android/pdfwriter/PDFDocument.java
+ crl.android.pdfwriter.PDFDocument
+crl/android/pdfwriter/Base.java
+ crl.android.pdfwriter.Base
+crl/android/pdfwriter/BuildConfig.java
+ crl.android.pdfwriter.BuildConfig
+crl/android/pdfwriter/Body.java
+ crl.android.pdfwriter.Body
+crl/android/pdfwriter/IndirectObject.java
+ crl.android.pdfwriter.IndirectObject
+crl/android/pdfwriter/EnclosedContent.java
+ crl.android.pdfwriter.EnclosedContent
+crl/android/pdfwriter/StandardFonts.java
+ crl.android.pdfwriter.StandardFonts
+crl/android/pdfwriter/Transformation.java
+ crl.android.pdfwriter.Transformation
+crl/android/pdfwriter/Dictionary.java
+ crl.android.pdfwriter.Dictionary
+crl/android/pdfwriter/Header.java
+ crl.android.pdfwriter.Header
+crl/android/pdfwriter/Array.java
+ crl.android.pdfwriter.Array
+crl/android/pdfwriter/XObjectImage.java
+ crl.android.pdfwriter.XObjectImage
+crl/android/pdfwriter/CrossReferenceTable.java
+ crl.android.pdfwriter.CrossReferenceTable
+crl/android/pdfwriter/Indentifiers.java
+ crl.android.pdfwriter.Indentifiers
+crl/android/pdfwriter/StandardCharsets.java
+ crl.android.pdfwriter.StandardCharsets
+crl/android/pdfwriter/Stream.java
+ crl.android.pdfwriter.Stream
+crl/android/pdfwriter/IndirectIdentifier.java
+ crl.android.pdfwriter.IndirectIdentifier
+crl/android/pdfwriter/Trailer.java
+ crl.android.pdfwriter.Trailer
+crl/android/pdfwriter/PaperSize.java
+ crl.android.pdfwriter.PaperSize
+crl/android/pdfwriter/Pages.java
+ crl.android.pdfwriter.Pages
+crl/android/pdfwriter/ASCII85Encoder.java
+ crl.android.pdfwriter.ASCII85Encoder
+crl/android/pdfwriter/Page.java
+ crl.android.pdfwriter.Page

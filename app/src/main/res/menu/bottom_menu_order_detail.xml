@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btnPrint"
+        android:fontFamily="@font/lato"
+        android:icon="@drawable/ic_baseline_print_24"
+        android:title="Print" />
+    <item
+        android:id="@+id/btnReorder"
+        android:fontFamily="@font/lato"
+        android:icon="@drawable/ic_baseline_add_shopping_cart_24"
+        android:title="Reorder" />
+    <item
+        android:id="@+id/btnShare"
+        android:fontFamily="@font/lato"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Share" />
+    <item
+        android:id="@+id/btnBack"
+        android:fontFamily="@font/lato"
+        android:icon="@drawable/ic_baseline_arrow_back_24"
+        android:title="Back" />
+</menu>

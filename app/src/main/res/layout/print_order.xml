@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:ignore="MissingClass">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp" />
+
+    <RelativeLayout
+        android:id="@+id/relView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relNavigation"
+        android:layout_below="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/text_view_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/expand_panel_border"
+            android:fontFamily="@font/lato"
+            android:padding="@dimen/_3ssp"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/gray"
+            app:backgroundTint="@color/gray"
+            app:elevation="@dimen/_5ssp"
+            app:itemIconTint="@color/white"
+            app:itemRippleColor="@color/light_grey"
+            app:itemTextColor="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_menu_order_print" />
+    </RelativeLayout>
+</RelativeLayout>

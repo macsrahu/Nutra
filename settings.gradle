@@ -1,2 +1,5 @@
+include ':app', ':apwlibrary'
+project(':apwlibrary').projectDir = new File('app/libs/apwlibrary')
+rootProject.name = "eTithe"
 rootProject.name = "Nutra"
-include ':app'
+
