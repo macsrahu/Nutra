@@ -155,7 +155,11 @@ public class Global {
         String sumAmount = decimalFormat.format(dlbValue);
         return currencySymbol + sumAmount;
     }
-
+    public static String GetFormatedValueWithOutCurreny(Double dlbValue) {
+        DecimalFormat decimalFormat = new DecimalFormat("##,##,###.00");
+        String sumAmount = decimalFormat.format(dlbValue);
+        return sumAmount;
+    }
     public static String GetFormatedValueWithoutDecimal(Double dlbValue) {
         String currencySymbol = "₹ ";
         DecimalFormat decimalFormat = new DecimalFormat("###");

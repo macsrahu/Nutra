@@ -273,7 +273,7 @@ public class PrintOrder extends AppCompatActivity {
                             }
 
                             stringBuilder.append("\n");
-                            stringBuilder.append(GetCenteredText("ORDER", iCharCount));
+                            stringBuilder.append(GetCenteredText("SALES ORDER", iCharCount));
                             stringBuilder.append("\n");
                             for (int j = 0; j < iCharCount; j++) {
                                 stringBuilder.append("-");
@@ -500,6 +500,7 @@ public class PrintOrder extends AppCompatActivity {
             File exportDir = new File(getBaseContext().getExternalCacheDir(), _FOLDER_PATH);
             if (!exportDir.exists()) {
                 exportDir.mkdirs();
+                //sMessages.ShowToast(getApplicationContext(), "Folder Created");
             }
             // String text = "Receipt No: " + mReceipt.getReceiptno() + "\n Receipt Date: " + mReceipt.getReceiptdate() + "\n Amount: " + text_view_amount.getText() + "\n Donated for the month of " + mReceipt.getPaymonth().toUpperCase();
         } catch (Exception e) {
@@ -610,23 +611,20 @@ public class PrintOrder extends AppCompatActivity {
         writer.addText(((_FOLIO_WIDTH / 2) - (sTitle.length() / 2)) - 20, _START_MARGIN, 20, sTitle);
 
         _START_MARGIN = _START_MARGIN - 30;
-        writer.addText(((_FOLIO_WIDTH / 2) - (sSubTitle.length() / 2) - 60), _START_MARGIN, 20, sSubTitle)
-        ;
-        //writer.addRawContent("0 0 0 rg\n");
+        writer.addText(((_FOLIO_WIDTH / 2) - (sSubTitle.length() / 2) - 60), _START_MARGIN, 20, sSubTitle);
+
 
         _START_MARGIN = _START_MARGIN - 20;
         writer.addLine(_LEFT, _START_MARGIN, PaperSize.FOLIO_WIDTH - 10, _START_MARGIN);
 
         _START_MARGIN = _START_MARGIN - 30;
 
-        String sProdductDesc = rightpad("Order No:", 8) + rightpad(Global.SELECTED_ORDER_MAIN.getOrderno(), 60) + rightpad("Date:", 7) + rightpad(Global.GetFormatedValue(Global.SELECTED_ORDER_MAIN.getOrderamount()), 10);
+        String sProdductDesc = rightpad("Order No: ", 8) + rightpad(Global.SELECTED_ORDER_MAIN.getOrderno(), 60) + rightpad("Date:", 7) + rightpad(Global.SELECTED_ORDER_MAIN.getOrderdate(), 14);
         writer.addText(_LEFT, _START_MARGIN, 14, sProdductDesc);
 
         _START_MARGIN = _START_MARGIN - 20;
 
-        writer.addLine(_LEFT, _START_MARGIN, PaperSize.FOLIO_WIDTH - 10, _START_MARGIN);
 
-        _START_MARGIN = _START_MARGIN - 20;
 
         String sName = rightpad("Name:", 10) + rightpad(Global.SELECTED_ORDER_MAIN.getDealer(), 100);
         writer.addText(_LEFT, _START_MARGIN, 12, sName);
@@ -642,7 +640,9 @@ public class PrintOrder extends AppCompatActivity {
         String sAmount = rightpad("Amount:", 10) + rightpad(getStringAtFixedLength(receiptAmount, 8), 10);
         writer.addText(_LEFT, _START_MARGIN, 12, sAmount);
         _START_MARGIN = _START_MARGIN - 20;
+        writer.addLine(_LEFT, _START_MARGIN, PaperSize.FOLIO_WIDTH - 10, _START_MARGIN);
 
+        _START_MARGIN = _START_MARGIN - 20;
         String strProductName = "";
         double dblTotal = 0;
         int Bottom = _START_MARGIN;
@@ -660,14 +660,18 @@ public class PrintOrder extends AppCompatActivity {
                         + strProductName.toUpperCase();
                 writer.addText(_LEFT, Bottom, 12, sDesc);
 
-                writer.addText(_LEFT + 120, Bottom, 12, Global.GetFormatedValue(mOrderLine.getPrice()));
+                writer.addText(430, Bottom, 12, Global.GetFormatedValueWithOutCurreny(mOrderLine.getPrice()));
 
-                writer.addText(_LEFT + 160, Bottom, 12, Global.GetFormatedValue(mOrderLine.getQty()));
+                writer.addText(480, Bottom, 12, Global.GetFormatedValueWithoutDecimal(mOrderLine.getQty()));
+
+                writer.addText(540, Bottom, 12, Global.GetFormatedValueWithOutCurreny(mOrderLine.getAmount()));
+
+                //DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                //String amount = decimalFormat.format(mOrderLine.getAmount());
+                //writer.addText(540, Bottom, 12, getStringAtFixedLength(amount, 8));
 
                 Bottom = Bottom - 20;
-                DecimalFormat decimalFormat = new DecimalFormat("#.00");
-                String amount = decimalFormat.format(mOrderLine.getAmount());
-                writer.addText(490, Bottom, 12, getStringAtFixedLength(amount, 8));
+
                 iSerialNo = iSerialNo + 1;
             }
         }
@@ -675,11 +679,12 @@ public class PrintOrder extends AppCompatActivity {
         Bottom = Bottom - 20;
         writer.addLine(_LEFT, Bottom, PaperSize.FOLIO_WIDTH - 10, Bottom);
         //------------------------------------------------------------------------
-        String sThanks = "Thank you for your great generosity.Your support is invaluable to us, thank you again!";
+       // String sThanks = "Thank you for your great generosity.Your support is invaluable to us, thank you again!";
 
         Bottom = Bottom - 20;
-        writer.addText(_LEFT, Bottom, 10, sThanks);
+        writer.addText(_LEFT, Bottom, 10, "Thank you");
 
+        menu_type=1;
         outputToFile(Global.SELECTED_ORDER_MAIN.getOrderno() + ".pdf", writer.asString(), "ISO-8859-1", menu_type);
     }
 
@@ -688,15 +693,15 @@ public class PrintOrder extends AppCompatActivity {
     }
 
     private void outputToFile(String fileName, String pdfContent, String encoding, int menu_type) {
-
-        File newFile = new File(getBaseContext().getExternalCacheDir().getAbsolutePath() + "/" + fileName);
+        //File exportDir = new File(getBaseContext().getExternalCacheDir(), _FOLDER_PATH);
+        File newFile = new File(getBaseContext().getExternalCacheDir(), _FOLDER_PATH + "/" + fileName);
         try {
             newFile.createNewFile();
             try {
                 FileOutputStream pdfFile = new FileOutputStream(newFile);
                 pdfFile.write(pdfContent.getBytes(encoding));
                 pdfFile.close();
-                //Toast.makeText(getApplicationContext(), "PDF created at " + newFile.getPath(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "PDF created at " + newFile.getPath(), Toast.LENGTH_LONG).show();
 
                 Uri path = Uri.fromFile(newFile);
 
