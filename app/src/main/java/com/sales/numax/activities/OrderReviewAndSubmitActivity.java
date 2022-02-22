@@ -31,6 +31,7 @@ import com.sales.numax.adapters.NewOrderReviewAdapter;
 import com.sales.numax.common.FirebaseTables;
 import com.sales.numax.model.Dealer;
 import com.sales.numax.model.OrderLine;
+import com.sales.numax.model.OrderLocation;
 import com.sales.numax.model.OrderMain;
 import com.sales.numax.utility.Global;
 import com.sales.numax.utility.GridSpacingItemDecoration;
@@ -103,9 +104,8 @@ public class OrderReviewAndSubmitActivity extends AppCompatActivity {
             switch (item.getItemId()) {
 
                 case R.id.btnSubmit:
-                    Messages.ShowToast(getApplicationContext(),"First");
+
                     if (Global.ORDER_LINE.size() > 0) {
-                        Messages.ShowToast(getApplicationContext(),"Second");
                         SubmitOrder();
                     } else {
                         Messages.ShowToast(getApplicationContext(), "No order item found to submit");
@@ -167,8 +167,9 @@ public class OrderReviewAndSubmitActivity extends AppCompatActivity {
                 true);
 
         dialog.show();
-        Messages.ShowToast(getApplicationContext(),"Third");
         OrderMain mOrderMain = new OrderMain();
+        Global.ORDER_LOCATION= new OrderLocation();
+
         String mOrderNo = "ORD-" + String.valueOf(new Date().getTime());
         String mOrderDate = SimpleDateFormat.getDateTimeInstance().format(new Date());
 
@@ -182,12 +183,26 @@ public class OrderReviewAndSubmitActivity extends AppCompatActivity {
         mOrderMain.setIsdelivered(0);
         mOrderMain.setOrderamount(dblAmount);
 
+
+
+        Global.ORDER_LOCATION.setCustomerdetail(Global.GetDealerAddress(Global.SELECTED_DEALER));
+        Global.ORDER_LOCATION.setCustomerkey(Global.SELECTED_DEALER.getKey());
+        Global.ORDER_LOCATION.setSalespersonkey(Global.LOGIN_USER_DETAIL.getKey());
+        Global.ORDER_LOCATION.setOrderdate(mOrderDate);
+        Global.ORDER_LOCATION.setOrderno(mOrderNo);
+        Global.ORDER_LOCATION.setRoutekey(Global.SELECTED_DEALER.getRoutekey());
+
+
         DatabaseReference mDataRefMain = FirebaseDatabase.getInstance().getReference().child(FirebaseTables.TBL_ORDERS_MAIN);
         final String sKey = mDataRefMain.push().getKey();
         mOrderMain.setKey(sKey);
         mDataRefMain.child(sKey).setValue(mOrderMain).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(@NonNull @NotNull Void unused) {
+                Global.NEW_ORDER_KEY = sKey;
+
+                Global.ORDER_LOCATION.setOrderkey(sKey);
+
 
                 DatabaseReference mDataOrderLineItem = FirebaseDatabase.getInstance().getReference().child(FirebaseTables.TBL_ORDERS_LINE_ITEMS);
                 int OrderLineId = 1;
@@ -211,21 +226,10 @@ public class OrderReviewAndSubmitActivity extends AppCompatActivity {
                 Global.SELECTED_DEALER = null;
                 dialog.dismiss();
                 if (task.isSuccessful()) {
-                    new MaterialDialog.Builder(OrderReviewAndSubmitActivity.this)
-                            .title("New Order")
-                            .content("Your order has been placed success fully")
-                            .positiveText("Ok")
-                            .onPositive(new MaterialDialog.SingleButtonCallback() {
-                                @Override
-                                public void onClick(@NonNull @NotNull MaterialDialog dialog, @NonNull @NotNull DialogAction which) {
-
-                                    Intent iDone = new Intent(OrderReviewAndSubmitActivity.this, DealersActivity.class);
-                                    iDone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(iDone);
-                                    finish();
-                                }
-                            });
-
+                    Intent iDone = new Intent(OrderReviewAndSubmitActivity.this, NewOrderDone.class);
+                    iDone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(iDone);
+                    finish();
                 } else {
                     dialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Unable to place the order", Toast.LENGTH_LONG).show();

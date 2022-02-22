@@ -182,6 +182,7 @@ public class DealerAdapter extends RecyclerView.Adapter<DealerAdapter.MyViewHold
             else if (item.getTitle().equals("New Order")) {
                 if (Global.SELECTED_DEALER != null) {
                     Global.ORDER_LINE=new ArrayList<OrderLine>();
+                    Global.ROUTE_KEY = Global.SELECTED_DEALER.getRoutekey();
                     Intent iDep = new Intent(mContext, NewOrderActivity.class);
                     iDep.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(iDep);

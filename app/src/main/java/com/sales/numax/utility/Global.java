@@ -25,6 +25,7 @@ import com.sales.numax.model.Category;
 import com.sales.numax.model.Company;
 import com.sales.numax.model.Dealer;
 import com.sales.numax.model.OrderLine;
+import com.sales.numax.model.OrderLocation;
 import com.sales.numax.model.OrderMain;
 import com.sales.numax.model.Route;
 import com.sales.numax.model.UserDetail;
@@ -49,10 +50,13 @@ public class Global {
     public static String SHOP_NAME = "";
     public static String MENU_FROM = "";
 
-    public static Company COMPANY=null;
+    public static Company COMPANY = null;
     public static OrderMain SELECTED_ORDER_MAIN;
     public static ArrayList<OrderLine> ORDER_LINE = null;
-    public static String PDF_FILE="";
+    public static String PDF_FILE = "";
+    public static OrderLocation ORDER_LOCATION = null;
+    public static String NEW_ORDER_KEY = "";
+    public static String ROUTE_KEY="";
 
     public static Toolbar PrepareToolBar(final Activity context, boolean isBackButtonVisible, String title) {
         Toolbar toolbar = (Toolbar) context.findViewById(R.id.toolbar);
@@ -155,11 +159,13 @@ public class Global {
         String sumAmount = decimalFormat.format(dlbValue);
         return currencySymbol + sumAmount;
     }
+
     public static String GetFormatedValueWithOutCurreny(Double dlbValue) {
         DecimalFormat decimalFormat = new DecimalFormat("##,##,###.00");
         String sumAmount = decimalFormat.format(dlbValue);
         return sumAmount;
     }
+
     public static String GetFormatedValueWithoutDecimal(Double dlbValue) {
         String currencySymbol = "₹ ";
         DecimalFormat decimalFormat = new DecimalFormat("###");

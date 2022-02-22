@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="185dp"
+            android:layout_height="185dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="170dp"
+            android:src="@drawable/orderdone" />
+
+        <TextView
+            android:id="@+id/tvDoneMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="178dp"
+            android:fontFamily="@font/lato"
+            android:paddingTop="10dp"
+            android:text="Order placed successfully placed"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_20ssp"
+            android:typeface="monospace" />
+
+        <Button
+            android:id="@+id/buttonDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_20ssp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_radious"
+            android:fontFamily="@font/lato"
+            android:gravity="center_horizontal"
+            android:minHeight="0dp"
+            android:padding="@dimen/_14ssp"
+            android:text="DONE"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+</RelativeLayout>

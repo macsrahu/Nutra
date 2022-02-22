@@ -71,6 +71,10 @@
             android:name="com.sales.numax.activities.PrintOrder"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.sales.numax.activities.NewOrderDone"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <!--        <service android:name="com.oms.bridle.MyFirebaseMessagingService">-->
         <!--            <intent-filter>-->

@@ -172,6 +172,7 @@ public class DealersActivity extends AppCompatActivity {
                 true);
         dialog.setInverseBackgroundForced(true);
         dialog.show();
+        Global.ROUTE_KEY = routekey;
         //Toast.makeText(getApplicationContext(),routekey,Toast.LENGTH_LONG).show();
         FirebaseDatabase.getInstance().getReference().child(FirebaseTables.TBL_DEALERS)
                 .orderByChild("routekey").equalTo(routekey).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
