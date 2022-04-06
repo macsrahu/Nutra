@@ -165,7 +165,7 @@ public class UploadPhoto extends AppCompatActivity {
                             SaveRecord();
                         }
                     } else {
-                        Messages.ShowToast(getApplicationContext(), "Donor not yet added");
+                        Messages.ShowToast(getApplicationContext(), "Dealer not yet added");
                     }
                     break;
                 case R.id.btnRemove:
@@ -371,6 +371,8 @@ public class UploadPhoto extends AppCompatActivity {
 
                 }
             });
+        }else{
+            Messages.ShowToast(getApplicationContext(),"Select picture to save");
         }
     }
 
@@ -388,8 +390,11 @@ public class UploadPhoto extends AppCompatActivity {
                     EasyImage.openCameraForImage(UploadPhoto.this, 0);
 
                 } else if (options[item].equals("Gallery")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
+                    PickFromGallary =true;
+                    EasyImage.openGallery(UploadPhoto.this,0);
+
+                    //Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    //sstartActivityForResult(intent, 2);
 
                 } else if (options[item].equals("Pictures")) {
                     Intent intent = new Intent();
@@ -417,8 +422,11 @@ public class UploadPhoto extends AppCompatActivity {
         if (PickFromGallary) {
             try {
                 mOutputFilePath = ImageUtil.PrepareImage(getApplicationContext(), requestCode, resultCode, data, RESULT_OK, imgPicture, _FOLDER_PATH, "DONOR");
+                //Messages.ShowToast(getApplicationContext(),mOutputFilePath);
+                PickFromGallary = false;
             } catch (IOException e) {
                 e.printStackTrace();
+                PickFromGallary =false;
                 Messages.ShowToast(getApplicationContext(), e.getMessage());
             }
         }else {

@@ -15,12 +15,15 @@ public class UserDetail implements Serializable {
     String userkey;
     String emailid;
     String mobile;
-
-    int isactive;
-    int usertype;
     String whatsappno;
+    String imgurl;
+    String routekey;
 
-    long createdon;
+    boolean isactive;
+    int usertype;
+    int deleted;
+    String createdon;
+    String updatedon;
     public UserDetail(){
 
     }
@@ -97,11 +100,11 @@ public class UserDetail implements Serializable {
         this.mobile = mobile;
     }
 
-    public int getIsactive() {
+    public boolean getIsactive() {
         return isactive;
     }
 
-    public void setIsactive(int isactive) {
+    public void setIsactive(boolean isactive) {
         this.isactive = isactive;
     }
 
@@ -121,12 +124,44 @@ public class UserDetail implements Serializable {
         this.whatsappno = whatsappno;
     }
 
-    public long getCreatedon() {
+    public String getCreatedon() {
         return createdon;
     }
 
-    public void setCreatedon(long createdon) {
+    public void setCreatedon(String createdon) {
         this.createdon = createdon;
+    }
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
+
+    public String getRoutekey() {
+        return routekey;
+    }
+
+    public void setRoutekey(String routekey) {
+        this.routekey = routekey;
+    }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+
+    public String getUpdatedon() {
+        return updatedon;
+    }
+
+    public void setUpdatedon(String updatedon) {
+        this.updatedon = updatedon;
     }
 }
 

@@ -53,15 +53,16 @@
 
         <TextView
             android:id="@+id/button_upload"
+            android:layout_marginTop="@dimen/_4ssp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/border_down"
+            android:background="@drawable/button_radious"
             android:fontFamily="@font/lato"
             android:padding="@dimen/_5ssp"
             android:text="Click to Capture"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"></TextView>
     </LinearLayout>
 

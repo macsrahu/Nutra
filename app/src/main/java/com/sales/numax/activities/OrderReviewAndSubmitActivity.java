@@ -181,9 +181,9 @@ public class OrderReviewAndSubmitActivity extends AppCompatActivity {
         mOrderMain.setDealerkey(Global.SELECTED_DEALER.getKey());
         mOrderMain.setIscancelled(0);
         mOrderMain.setIsdelivered(0);
+        mOrderMain.setRoutekey(Global.SELECTED_DEALER.getRoutekey());
+        mOrderMain.setUserid(Global.LOGIN_USER_DETAIL.getKey());
         mOrderMain.setOrderamount(dblAmount);
-
-
 
         Global.ORDER_LOCATION.setCustomerdetail(Global.GetDealerAddress(Global.SELECTED_DEALER));
         Global.ORDER_LOCATION.setCustomerkey(Global.SELECTED_DEALER.getKey());

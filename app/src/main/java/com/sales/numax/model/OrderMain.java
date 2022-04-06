@@ -13,6 +13,8 @@ public class OrderMain implements Serializable {
     String dealerkey;
     String dealer;
     String address;
+    String routekey;
+    String userid;
 
     double orderamount;
     int iscancelled;
@@ -101,5 +103,21 @@ public class OrderMain implements Serializable {
 
     public void setOrderdatestamp(long orderdatestamp) {
         this.orderdatestamp = orderdatestamp;
+    }
+
+    public String getRoutekey() {
+        return routekey;
+    }
+
+    public void setRoutekey(String routekey) {
+        this.routekey = routekey;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }

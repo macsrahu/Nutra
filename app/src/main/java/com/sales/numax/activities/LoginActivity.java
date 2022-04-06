@@ -199,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (userDetail!=null){
                             Global.LOGIN_USER_DETAIL = userDetail;
                             if (userDetail.getUsertype()==1) { // Not equal to web user
-                                if (userDetail.getIsactive() == 1) {
+                                if (userDetail.getIsactive()) {
                                     Global.USER_TYPE = Global.LOGIN_USER_DETAIL.getUsertype();
                                     RememberMe(Global.USER_CODE, Global.USER_TYPE);
                                     //RegisterBrodcaster();
